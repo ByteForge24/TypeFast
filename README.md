@@ -1,4 +1,4 @@
-# ⚡ TypeFast ⌨️🚀
+#  TypeFast ⚡
 
 🧠 **TypeFast** is a modern, minimalist **typing speed test application** built using **Next.js**.  
 It helps users **practice typing**, **measure speed & accuracy**, and **compete with others** in a clean, distraction-free environment ✨.
@@ -121,7 +121,7 @@ Before starting, make sure you have:
 ## 🚀 Getting Started
 
 ### Step 1: Clone the Repository 📥
-git clone https://github.com/Kshitiz2431/SwiftKeys-.git  
+git clone https://github.com/022RaTiNdRa/TypeFast  
 cd TypeFast-  
 
 ### Step 2: Install Dependencies 📦
