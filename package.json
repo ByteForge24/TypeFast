@@ -2,7 +2,7 @@
   "name": "typefast",
   "version": "1.0.0",
   "description": "A modern, real-time typing speed test application with multiplayer races, leaderboards, and analytics",
-  "private": true,
+  "private": true, 
   "author": "just-surviving",
   "license": "MIT",
   "homepage": "https://github.com/just-surviving/TypeFast#readme",
