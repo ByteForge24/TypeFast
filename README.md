@@ -204,3 +204,4 @@ TypeFast is a **real-world, production-style project** that is:
 - Easy to extend 🧩  
 
 Happy typing ⚡⌨️🚀
+<!-- documentation updated -->
