@@ -1,6 +1,6 @@
 {
   "name": "@typefast/web",
-  "version": "1.0.0",
+  "version": "1.0.0", 
   "description": "TypeFast web application - Real-time typing speed test with multiplayer features",
   "type": "module",
   "private": true,
