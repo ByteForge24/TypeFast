@@ -1,27 +1,20 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
+export const runtime = "nodejs"; // ✅ REQUIRED
+
 import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
+import prisma from "./DB_prisma/src";
 import { getUserById } from "./db/user";
-import prisma from "./DB_prisma/src/index";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  pages: {
-    signIn: "/auth",
-  },
-  events: {
-    async linkAccount({ user }) {
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      });
-    },
-  },
+  pages: { signIn: "/auth" },
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider !== "credentials") return true;
-      const existingUser = await getUserById(user.id!);
-      if (!existingUser || !existingUser?.emailVerified) return false;
-      return true;
+      const existing = await getUserById(user.id!);
+      return !!existing?.emailVerified;
     },
     async session({ session, token }) {
       if (session.user && token.sub) {
@@ -30,7 +23,5 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return session;
     },
   },
-  adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
   ...authConfig,
 });
