@@ -1,3 +1,6 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 import redis from "@/lib/redis";
 import { auth } from "@/auth";
@@ -6,7 +9,7 @@ import { LeaderboardDataType, LeaderboardEntry } from "../../../common/src/types
 const ALL_TIME_LEADERBOARD = "TypeFast:leaderboard:alltime";
 const DAILY_LEADERBOARD = "TypeFast:leaderboard:daily";
 
-export const GET = async (request: NextRequest) => {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode") || "all";
   const timeFrame = searchParams.get("timeFrame") || "alltime";
@@ -16,12 +19,18 @@ export const GET = async (request: NextRequest) => {
     timeFrame === "daily" ? DAILY_LEADERBOARD : ALL_TIME_LEADERBOARD;
 
   try {
-    const scores = await redis.zrevrange(leaderboardKey, 0, -1, "WITHSCORES"); 
+    const scores = await redis.zrevrange(
+      leaderboardKey,
+      0,
+      -1,
+      "WITHSCORES"
+    );
 
     const userHighestScores = new Map<string, LeaderboardDataType>();
 
     for (let i = 0; i < scores.length; i += 2) {
       const userData = JSON.parse(scores[i]!) as LeaderboardEntry;
+
       if (mode === "all" || userData.mode === mode) {
         if (!userHighestScores.has(userData.name)) {
           userHighestScores.set(userData.name, {
@@ -51,9 +60,9 @@ export const GET = async (request: NextRequest) => {
       { status: 500 }
     );
   }
-};
+}
 
-export const POST = async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
   try {
     const { wpm, accuracy, time, mode } = await request.json();
 
@@ -66,9 +75,9 @@ export const POST = async (request: NextRequest) => {
 
     const session = await auth();
 
-    if (!session?.user) {
+    if (!session?.user?.name) {
       return NextResponse.json(
-        { error: "Unauthorized: No valid session found" },
+        { error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -84,18 +93,10 @@ export const POST = async (request: NextRequest) => {
       timestamp: Date.now(),
     });
 
-    const allTimeScores = await redis.zrange(
-      ALL_TIME_LEADERBOARD,
-      0,
-      -1,
-      "WITHSCORES"
-    );
-    const dailyScores = await redis.zrange(
-      DAILY_LEADERBOARD,
-      0,
-      -1,
-      "WITHSCORES"
-    );
+    const [allTimeScores, dailyScores] = await Promise.all([
+      redis.zrange(ALL_TIME_LEADERBOARD, 0, -1, "WITHSCORES"),
+      redis.zrange(DAILY_LEADERBOARD, 0, -1, "WITHSCORES"),
+    ]);
 
     for (let i = 0; i < allTimeScores.length; i += 2) {
       const entry = JSON.parse(allTimeScores[i]!) as LeaderboardEntry;
@@ -121,6 +122,7 @@ export const POST = async (request: NextRequest) => {
     const secondsUntilMidnight = Math.floor(
       (midnight.getTime() - Date.now()) / 1000
     );
+
     await redis.expire(DAILY_LEADERBOARD, secondsUntilMidnight);
 
     return NextResponse.json({ success: true, score });
@@ -131,4 +133,4 @@ export const POST = async (request: NextRequest) => {
       { status: 500 }
     );
   }
-};
+}
