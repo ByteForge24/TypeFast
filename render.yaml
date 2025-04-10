@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: typefast-web
+    runtime: node
+    plan: free
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        scope: build
+        sync: false
+      - key: NEXTAUTH_SECRET
+        scope: build
+        sync: false
+      - key: NEXTAUTH_URL
+        value: https://typefast.onrender.com
+      - key: REDIS_URL
+        scope: build
+        sync: false
+    buildFilter:
+      paths:
+        - apps/web/**
+    autoDeployOnPush: true
