@@ -1,4 +1,3 @@
-import prisma from "../../../../DB_prisma/src/index";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
@@ -7,6 +6,9 @@ export const GET = async (
 ) => {
   try {
     const { code } = await segmentData.params;
+
+    const prismaModule = await import("../../../../DB_prisma/src/index");
+    const prisma = prismaModule.default;
 
     const room = await prisma.room.findUnique({
       where: { code },
