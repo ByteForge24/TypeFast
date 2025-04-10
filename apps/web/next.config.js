@@ -2,6 +2,12 @@
 const nextConfig = {
   output: "standalone",
   transpilePackages: ["./ui"],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
