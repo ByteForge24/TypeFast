@@ -1,11 +1,13 @@
 import { auth } from "@/auth";
 import { roomSchema } from "../../../common/src/schemas";
 import { generateRoomCode } from "@/lib/utils";
-import prisma from "../../../DB_prisma/src/index";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
   try {
+    const prismaModule = await import("../../../DB_prisma/src/index");
+    const prisma = prismaModule.default;
+
     const session = await auth();
 
     if (!session || !session?.user || !session?.user?.id) {
@@ -45,6 +47,9 @@ export const POST = async (request: NextRequest) => {
 
 export const GET = async () => {
   try {
+    const prismaModule = await import("../../../DB_prisma/src/index");
+    const prisma = prismaModule.default;
+
     const rooms = await prisma.room.findMany({
       select: {
         id: true,
