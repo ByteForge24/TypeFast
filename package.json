@@ -7,6 +7,7 @@
   "scripts": {
     "postinstall": "cd apps/web/DB_prisma && npx prisma generate",
     "build": "turbo run build",
+    "start": "cd apps/web && yarn start",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "lint:fix": "turbo lint --fix",
