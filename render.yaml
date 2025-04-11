@@ -3,7 +3,6 @@ services:
     name: typefast-web
     runtime: node
     plan: free
-    buildCommand: yarn install && cd apps/web/DB_prisma && npx prisma generate && cd ../../.. && yarn build
     startCommand: yarn start
     envVars:
       - key: NODE_ENV

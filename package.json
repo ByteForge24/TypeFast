@@ -5,6 +5,7 @@
   "packageManager": "yarn@1.22.22",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
+    "postinstall": "cd apps/web/DB_prisma && npx prisma generate",
     "build": "turbo run build",
     "dev": "turbo dev",
     "lint": "turbo lint",
