@@ -2,7 +2,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
-import redis from "@/lib/redis";
+import { getRedis } from "@/lib/redis";
 import { auth } from "@/auth";
 import { LeaderboardDataType, LeaderboardEntry } from "../../../common/src/types";
 
@@ -10,6 +10,7 @@ const ALL_TIME_LEADERBOARD = "TypeFast:leaderboard:alltime";
 const DAILY_LEADERBOARD = "TypeFast:leaderboard:daily";
 
 export async function GET(request: NextRequest) {
+  const redis = getRedis();
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode") || "all";
   const timeFrame = searchParams.get("timeFrame") || "alltime";
@@ -63,6 +64,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const redis = getRedis();
   try {
     const { wpm, accuracy, time, mode } = await request.json();
 
