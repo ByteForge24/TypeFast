@@ -20,6 +20,10 @@ export async function GET(request: NextRequest) {
     timeFrame === "daily" ? DAILY_LEADERBOARD : ALL_TIME_LEADERBOARD;
 
   try {
+    if (!redis) {
+      return NextResponse.json({ leaderboard: [], warning: "Redis not configured" });
+    }
+
     const scores = await redis.zrevrange(
       leaderboardKey,
       0,
@@ -81,6 +85,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Unauthorized" },
         { status: 401 }
+      );
+    }
+
+    if (!redis) {
+      return NextResponse.json(
+        { error: "Leaderboard service unavailable. Please set REDIS_URL." },
+        { status: 503 }
       );
     }
 
