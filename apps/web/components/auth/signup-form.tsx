@@ -30,7 +30,11 @@ const childVariants = {
   },
 };
 
-const SignUpForm = () => {
+interface SignUpFormProps {
+  callbackUrl?: string;
+}
+
+const SignUpForm = ({ callbackUrl }: SignUpFormProps) => {
   const [isPending, startTransition] = useTransition();
 
   const signUpForm = useForm<SignUpValues>({

@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { getProfileData } from "@/actions/profile";
 import BestScores from "@/components/profile/best-scores";
 import Header from "@/components/profile/header";
@@ -8,6 +10,11 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 const ProfilePage = async () => {
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/auth?callbackUrl=/profile");
+  }
+
   const { data } = await getProfileData();
 
   return (

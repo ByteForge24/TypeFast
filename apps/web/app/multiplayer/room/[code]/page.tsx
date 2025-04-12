@@ -2,6 +2,7 @@
 
 import { useEffect, useState, use, useCallback } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Room as RoomType } from "../../../../common/src/types";
 import { motion } from "framer-motion";
 import { Member } from "../../../../common/src/types";
@@ -29,8 +30,14 @@ const itemVariants = {
 
 const RoomPage = (props: { params: Promise<{ code: string }> }) => {
   const { code } = use(props.params);
-
+  const router = useRouter();
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.replace(`/auth?callbackUrl=/multiplayer/room/${code}`);
+    }
+  }, [status, router, code]);
 
   const [roomData, setRoomData] = useState<RoomType | null>(null);
   const [isRaceStarted, setIsRaceStarted] = useState(false);
@@ -104,7 +111,7 @@ const RoomPage = (props: { params: Promise<{ code: string }> }) => {
     joinRoom();
   }, [joinRoom]);
 
-  if (status === "loading") {
+  if (status === "loading" || status === "unauthenticated") {
     return (
       <div className="h-screen grid place-items-center">
         <LoaderPinwheel className="animate-spin mx-auto size-10 text-yellow-400" />

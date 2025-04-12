@@ -19,6 +19,10 @@ import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/constants";
 
+interface SignInFormProps {
+  callbackUrl?: string;
+}
+
 const childVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -32,7 +36,7 @@ const childVariants = {
   },
 };
 
-const SignInForm = () => {
+const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) => {
   const [isPending, startTransition] = useTransition();
 
   const signInForm = useForm<SignInValues>({
@@ -53,7 +57,7 @@ const SignInForm = () => {
             email: values.email,
             password: values.password,
             redirect: true,
-            callbackUrl: DEFAULT_LOGIN_REDIRECT,
+            callbackUrl,
           });
 
           toast.success(result.message);

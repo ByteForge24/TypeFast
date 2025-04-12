@@ -10,11 +10,15 @@ services:
       - key: DATABASE_URL
         scope: build
         sync: false
-      - key: NEXTAUTH_SECRET
-        scope: build
+      # Auth.js v5 - must be available at runtime for middleware session checks
+      - key: AUTH_SECRET
         sync: false
+      - key: AUTH_URL
+        value: https://typefast.onrender.com
       - key: NEXTAUTH_URL
         value: https://typefast.onrender.com
+      - key: AUTH_TRUST_HOST
+        value: "true"
       - key: REDIS_URL
         scope: build
         sync: false

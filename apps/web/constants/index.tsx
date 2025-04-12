@@ -22,6 +22,9 @@ export const publicRoutes = [
   "/type",
   "/api/leaderboard",
   "/api/stats",
+  // Profile and Multiplayer: protected at page/API level to avoid Edge middleware
+  // cookie reading issues in production (Render proxy)
+  "/profile",
 ];
 export const authRoutes = ["/auth", "/auth/verification"];
 export const apiAuthPrefix = "/api/auth";

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "../../ui/src/components/ui/button";
 import {
@@ -36,10 +37,11 @@ const containerVariants = {
 };
 
 const AuthPage = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") ?? DEFAULT_LOGIN_REDIRECT;
+
   const handleClick = () => {
-    signIn("google", {
-      callbackUrl: DEFAULT_LOGIN_REDIRECT,
-    });
+    signIn("google", { callbackUrl });
   };
 
   return (
@@ -76,10 +78,10 @@ const AuthPage = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="signin">
-                <SignInForm />
+                <SignInForm callbackUrl={callbackUrl} />
               </TabsContent>
               <TabsContent value="signup">
-                <SignUpForm />
+                <SignUpForm callbackUrl={callbackUrl} />
               </TabsContent>
             </Tabs>
           </CardContent>

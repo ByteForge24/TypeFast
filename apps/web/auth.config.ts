@@ -8,6 +8,8 @@ import { signInSchema } from "./common/src/schemas";
 import { getUserByEmail } from "./db/user";
 
 const authConfig = {
+  // Required for Render, Vercel, and other reverse-proxy deployments
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
