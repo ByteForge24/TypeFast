@@ -22,6 +22,17 @@ services:
       - key: REDIS_URL
         scope: build
         sync: false
+      # Google OAuth - set in Render Dashboard. Add this redirect URI in Google Cloud Console:
+      # https://typefast.onrender.com/api/auth/callback/google
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      # Required for email verification - use production URL
+      - key: FRONTEND_URL
+        value: https://typefast.onrender.com
+      - key: RESEND_API_KEY
+        sync: false
     buildFilter:
       paths:
         - apps/web/**
