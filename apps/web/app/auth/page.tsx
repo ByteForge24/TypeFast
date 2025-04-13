@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "../../ui/src/components/ui/button";
@@ -36,7 +37,7 @@ const containerVariants = {
   },
 };
 
-const AuthPage = () => {
+const AuthPageContent = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? DEFAULT_LOGIN_REDIRECT;
 
@@ -96,5 +97,11 @@ const AuthPage = () => {
     </div>
   );
 };
+
+const AuthPage = () => (
+  <Suspense fallback={<div className="flex justify-center mt-10 p-4 min-h-[400px] items-center">Loading...</div>}>
+    <AuthPageContent />
+  </Suspense>
+);
 
 export default AuthPage;
