@@ -52,17 +52,30 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
       try {
         const result = await login(values);
 
-        if (result.success) {
-          await signIn("credentials", {
-            email: values.email,
-            password: values.password,
-            redirect: true,
-            callbackUrl,
-          });
-
-          toast.success(result.message);
-        } else {
+        if (!result.success) {
           toast.error(result.message);
+          return;
+        }
+
+        const signInResult = await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+          redirect: false,
+          callbackUrl,
+        });
+
+        if (signInResult?.error) {
+          const errorMsg =
+            signInResult.error === "CredentialsSignin"
+              ? "Invalid email or password, or email not verified."
+              : signInResult.error;
+          toast.error(errorMsg);
+          return;
+        }
+
+        if (signInResult?.ok && signInResult?.url) {
+          toast.success(result.message);
+          window.location.href = signInResult.url;
         }
       } catch (error) {
         console.error("Sign in error:", error);

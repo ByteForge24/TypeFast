@@ -1,18 +1,21 @@
 import { Resend } from "resend";
 
-if (!process.env.RESEND_API_KEY) {
-  throw new Error("RESEND_API_KEY is not defined");
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  const frontendUrl = process.env.FRONTEND_URL;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is not configured. Add it in your Render dashboard Environment variables.");
+  }
+  if (!frontendUrl) {
+    throw new Error("FRONTEND_URL is not configured. Set it to your production URL (e.g. https://typefast.onrender.com).");
+  }
+  return { resend: new Resend(apiKey), frontendUrl };
 }
-
-if (!process.env.FRONTEND_URL) {
-  throw new Error("FRONTEND_URL is not defined");
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env.FRONTEND_URL}/auth/verification?token=${token}`;
-  await resend.emails.send({
+  const { resend, frontendUrl } = getResendClient();
+  const confirmLink = `${frontendUrl}/auth/verification?token=${token}`;
+  const result = await resend.emails.send({
     from: "mail@TypeFast.club",
     subject: "Verify your TypeFast account",
     html: `
@@ -48,4 +51,8 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     `,
     to: email,
   });
+
+  if (result.error) {
+    throw new Error(`Failed to send verification email: ${result.error.message}`);
+  }
 };
