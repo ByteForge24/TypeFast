@@ -46,6 +46,8 @@ const CreateRoom = () => {
   const onSubmit = (data: RoomValues) => {
     startTransition(async () => {
       try {
+        console.log("[CreateRoom] Submitting room creation with data:", data);
+        
         const response = await fetch("/api/room", {
           method: "POST",
           headers: {
@@ -53,12 +55,34 @@ const CreateRoom = () => {
           },
           body: JSON.stringify(data),
         });
-        const room = await response.json();
+
+        console.log("[CreateRoom] Response status:", response.status);
+        
+        const responseData = await response.json();
+        console.log("[CreateRoom] Response data:", responseData);
+
+        if (!response.ok) {
+          const errorMessage = responseData?.error || "Failed to create room";
+          const details = responseData?.details ? ` (${responseData.details})` : "";
+          console.error("[CreateRoom] Error response:", { error: errorMessage, details });
+          toast.error(errorMessage + details);
+          return;
+        }
+
+        const room = responseData;
+        if (!room.code) {
+          console.error("[CreateRoom] Room response missing code:", room);
+          toast.error("Invalid room data received");
+          return;
+        }
+
+        console.log("[CreateRoom] Room created successfully, redirecting to:", room.code);
         router.push(`/multiplayer/room/${room.code}`);
         toast.success("Room created successfully!");
       } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong!");
+        console.error("[CreateRoom] Network or parsing error:", error);
+        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
+        toast.error(errorMessage);
       }
     });
   };

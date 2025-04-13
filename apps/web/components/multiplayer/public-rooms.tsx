@@ -16,18 +16,29 @@ const PublicRooms = ({ rooms }: PublicRoomsProps) => {
     setRoomId(roomId);
     startTransition(async () => {
       try {
+        console.log("[PublicRooms] Joining room with code:", roomCode);
+        
         const response = await fetch(`/api/room/${roomCode}`);
         const room = await response.json();
 
-        if (response.ok) {
+        console.log("[PublicRooms] Join response:", {
+          status: response.status,
+          room,
+        });
+
+        if (!response.ok) {
+          const errorMessage = room?.error || "Room not found!";
+          console.error("[PublicRooms] Failed to join room:", errorMessage);
+          toast.error(errorMessage);
+        } else {
+          console.log("[PublicRooms] Successfully joined room, redirecting...");
           router.push(`/multiplayer/room/${roomCode}`);
           toast.success("Joined room successfully!");
-        } else {
-          toast.error(room.error || "Room not found!");
         }
       } catch (error) {
-        console.error(error);
-        toast.error("Failed to join room");
+        console.error("[PublicRooms] Error joining room:", error);
+        const errorMessage = error instanceof Error ? error.message : "Failed to join room";
+        toast.error(errorMessage);
       } finally {
         setRoomId(null);
       }

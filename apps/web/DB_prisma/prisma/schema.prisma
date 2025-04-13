@@ -1,5 +1,7 @@
+// For local development: SQLite
+// For production (Render): PostgreSQL via environment variable switching
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
