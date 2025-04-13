@@ -33,22 +33,37 @@ const MultiplayerPage = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await fetch("/api/room");
-        const data = await response.json();
-        setRooms(data);
-      } catch (error) {
-        console.error("Error fetching public rooms:", error);
+  const fetchRooms = async () => {
+    try {
+      console.log("[MultiplayerPage] Fetching public rooms...");
+      const response = await fetch("/api/room");
+      
+      if (!response.ok) {
+        console.error("[MultiplayerPage] Failed to fetch rooms:", response.status);
+        return;
       }
-    };
+      
+      const data = await response.json();
+      console.log("[MultiplayerPage] Rooms fetched:", {
+        count: data.length,
+        rooms: data.map((r: Room) => ({ code: r.code, name: r.name })),
+      });
+      setRooms(data);
+    } catch (error) {
+      console.error("[MultiplayerPage] Error fetching public rooms:", error);
+    }
+  };
 
+  useEffect(() => {
+    // Initial fetch
     startTransition(() => {
       fetchRooms();
     });
 
-    const interval = setInterval(fetchRooms, 3000);
+    // Refresh every 3 seconds for near real-time updates
+    const interval = setInterval(() => {
+      fetchRooms();
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);

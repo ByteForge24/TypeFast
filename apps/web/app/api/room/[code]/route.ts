@@ -6,6 +6,7 @@ export const GET = async (
 ) => {
   try {
     const { code } = await segmentData.params;
+    console.log("[GET /api/room/[code]] Fetching room with code:", code);
 
     const prismaModule = await import("../../../../DB_prisma/src/index");
     const prisma = prismaModule.default;
@@ -22,14 +23,25 @@ export const GET = async (
     });
 
     if (!room) {
-      return NextResponse.json({ error: "Room not found" }, { status: 404 });
+      console.warn("[GET /api/room/[code]] Room not found with code:", code);
+      return NextResponse.json(
+        { error: "Room not found", code },
+        { status: 404 }
+      );
     }
+
+    console.log("[GET /api/room/[code]] Room found:", {
+      id: room.id,
+      code: room.code,
+      name: room.name,
+    });
 
     return NextResponse.json(room);
   } catch (error) {
-    console.error("Error fetching room: ", error);
+    console.error("[GET /api/room/[code]] Error fetching room:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to fetch room", details: errorMessage },
       { status: 500 }
     );
   }

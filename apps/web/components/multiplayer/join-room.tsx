@@ -38,18 +38,29 @@ const JoinRoom = () => {
   const onSubmit = (data: JoinRoomValues) => {
     startTransition(async () => {
       try {
+        console.log("[JoinRoom] Attempting to join room with code:", data.code);
+        
         const response = await fetch(`/api/room/${data.code}`);
         const room = await response.json();
 
-        if (response.ok) {
-          router.push(`/room/${data.code}`);
-          toast.success("Joined room successfully!");
+        console.log("[JoinRoom] Join response:", {
+          status: response.status,
+          room,
+        });
+
+        if (!response.ok) {
+          const errorMessage = room?.error || "Room not found!";
+          console.error("[JoinRoom] Failed to join room:", errorMessage);
+          toast.error(errorMessage);
         } else {
-          toast.error(room.error || "Room not found!");
+          console.log("[JoinRoom] Successfully joined room, redirecting...");
+          router.push(`/multiplayer/room/${data.code}`);
+          toast.success("Joined room successfully!");
         }
       } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong!");
+        console.error("[JoinRoom] Error joining room:", error);
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong!";
+        toast.error(errorMessage);
       }
     });
   };
