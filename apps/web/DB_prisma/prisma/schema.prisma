@@ -1,7 +1,7 @@
-// For local development: SQLite
-// For production (Render): PostgreSQL via environment variable switching
+// Production: PostgreSQL via Supabase
+// Local: Override DATABASE_URL in .env to use SQLite file path
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
