@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "../../../../DB_prisma/src/index";
 
 export const GET = async (
   request: NextRequest,
@@ -7,9 +8,6 @@ export const GET = async (
   try {
     const { code } = await segmentData.params;
     console.log("[GET /api/room/[code]] Fetching room with code:", code);
-
-    const prismaModule = await import("../../../../DB_prisma/src/index");
-    const prisma = prismaModule.default;
 
     const room = await prisma.room.findUnique({
       where: { code },
