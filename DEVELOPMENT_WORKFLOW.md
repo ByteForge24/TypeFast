@@ -106,12 +106,14 @@ This is expected if Supabase is unreachable from your network. The local SQLite 
 ### "Migration failed"
 
 Run:
+
 ```bash
 cd apps/web/DB_prisma
 npx prisma migrate resolve --rolled-back <migration_name>
 ```
 
 Then fix the issue and run:
+
 ```bash
 npx prisma migrate dev
 ```
