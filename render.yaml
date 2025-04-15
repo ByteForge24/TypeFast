@@ -1,39 +1,25 @@
+# Render Configuration - WebSocket Service Only
+# ================================================
+# NOTE: apps/web is deployed to Vercel, not Render
+# NOTE: See apps/web/.env.local and Vercel dashboard for web app config
+# 
+# This file only configures the WebSocket backend service for Render
+
 services:
   - type: web
-    name: typefast-web
+    name: typefast-ws
     runtime: node
     plan: free
-    startCommand: yarn start
+    startCommand: node apps/ws/dist/index.js
+    buildCommand: yarn ws:build
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DATABASE_URL
-        scope: build
-        sync: false
-      # Auth.js v5 - must be available at runtime for middleware session checks
-      - key: AUTH_SECRET
-        sync: false
-      - key: AUTH_URL
-        value: https://typefast.onrender.com
-      - key: NEXTAUTH_URL
-        value: https://typefast.onrender.com
-      - key: AUTH_TRUST_HOST
-        value: "true"
-      - key: REDIS_URL
-        scope: build
-        sync: false
-      # Google OAuth - set in Render Dashboard. Add this redirect URI in Google Cloud Console:
-      # https://typefast.onrender.com/api/auth/callback/google
-      - key: GOOGLE_CLIENT_ID
-        sync: false
-      - key: GOOGLE_CLIENT_SECRET
-        sync: false
-      # Required for email verification - use production URL
-      - key: FRONTEND_URL
-        value: https://typefast.onrender.com
-      - key: RESEND_API_KEY
-        sync: false
+      - key: WS_PORT
+        value: "8080"
+      - key: WS_HOST
+        value: 0.0.0.0
     buildFilter:
       paths:
-        - apps/web/**
+        - apps/ws/**
     autoDeployOnPush: true
