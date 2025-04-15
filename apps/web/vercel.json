@@ -1,18 +1,3 @@
 {
-  "version": 2,
-  "public": false,
-  "buildCommand": "yarn db:generate && next build",
-  "installCommand": "yarn install",
-  "outputDirectory": ".next",
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "envPrefix": "NEXT_PUBLIC_",
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  },
-  "regions": ["iad1"]
+  "buildCommand": "yarn db:generate && next build"
 }
