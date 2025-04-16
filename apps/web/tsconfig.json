@@ -6,8 +6,9 @@
     "declarationMap": false,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "noImplicitAny": false,
     "paths": {
-      "@/*": ["./src/*", "./*"]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
