@@ -3,28 +3,38 @@
   "version": "1.0.0",
   "private": true,
   "packageManager": "yarn@1.22.22",
-  "workspaces": ["apps/*", "packages/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "postinstall": "cd apps/web/DB_prisma && npx prisma generate",
+    "postinstall": "cd apps/web/DB_prisma && npx prisma generate || true",
     "build": "turbo run build",
     "start": "cd apps/web && yarn start",
     "dev": "turbo dev",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
     "lint": "turbo lint",
     "lint:fix": "turbo lint --fix",
     "type-check": "turbo type-check",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "ws:dev": "cd apps/ws && yarn dev",
+    "ws:build": "cd apps/ws && yarn build",
+    "ws:start": "cd apps/ws && yarn start"
   },
   "devDependencies": {
-    "turbo": "^2.3.3",
-    "typescript": "5.5.4",
-    "prettier": "^3.2.5",
+    "@types/bcryptjs": "^2.4.6",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react-hooks": "^4.6.2"
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prettier": "^3.2.5",
+    "turbo": "^2.3.3",
+    "typescript": "5.5.4"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
     "@prisma/client": "^6.14.0",
+    "bcryptjs": "^3.0.3",
     "prisma": "^6.14.0"
   },
   "engines": {
