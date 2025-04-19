@@ -10,9 +10,8 @@ services:
     name: typefast-ws
     runtime: node
     plan: free
-    root: apps/ws
-    startCommand: node dist/index.js
-    buildCommand: yarn install && yarn build
+    startCommand: cd apps/ws && node dist/index.js
+    buildCommand: yarn && yarn ws:build
     envVars:
       - key: NODE_ENV
         value: production
