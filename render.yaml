@@ -1,16 +1,12 @@
 # Render Configuration - Full Stack Deployment
 # ================================================
 # Deploys: Web (Next.js) + WebSocket + PostgreSQL Database
-# Everything runs on Render, no external dependencies
 
 services:
   # PostgreSQL Database
   - type: pserv
     name: typefast-db
     plan: free
-    ipAllowList: []
-    postgreSQL:
-      version: 15
 
   # Next.js Web Application
   - type: web
@@ -36,20 +32,6 @@ services:
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
-    routes:
-      - type: http
-        path: /
-      - type: http
-        path: /api
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=3600
-    buildFilter:
-      paths:
-        - apps/web/**
-        - package.json
-        - yarn.lock
 
   # WebSocket Backend
   - type: web
@@ -65,11 +47,3 @@ services:
         value: "10000"
       - key: WS_HOST
         value: 0.0.0.0
-    routes:
-      - type: http
-        path: /
-    buildFilter:
-      paths:
-        - apps/ws/**
-        - package.json
-        - yarn.lock
