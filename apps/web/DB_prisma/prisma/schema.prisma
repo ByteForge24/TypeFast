@@ -1,9 +1,11 @@
-// Production: PostgreSQL via Supabase
-// Local: Override DATABASE_URL in .env to use SQLite file path
+// Production: PostgreSQL via Render
+// Direct connection, no pooler/prepared statement issues
+// 
+// Render automatically provides DATABASE_URL environment variable
+// pointing to the attached PostgreSQL instance
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {

@@ -10,6 +10,7 @@
   "scripts": {
     "postinstall": "cd apps/web/DB_prisma && npx prisma generate || true",
     "build": "turbo build",
+    "web:build": "cd apps/web && yarn build",
     "start": "cd apps/web && yarn start",
     "dev": "turbo dev",
     "docker:up": "docker compose up --build",
