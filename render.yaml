@@ -2,6 +2,13 @@
 # ================================================
 # Deploys: Web (Next.js) + WebSocket
 # PostgreSQL database created separately in Render dashboard
+#
+# Build Process:
+#   1. yarn install - installs all workspaces (root, apps/web, apps/ws)
+#   2. yarn web:build or yarn ws:build - uses root scripts to build each service
+#
+# Start Process:
+#   Uses root workspace scripts that handle cd navigation automatically
 
 services:
   # Next.js Web Application
@@ -9,8 +16,8 @@ services:
     name: typefast-web
     runtime: node
     plan: free
-    buildCommand: yarn install && cd apps/web && yarn build
-    startCommand: cd apps/web && yarn start
+    buildCommand: yarn install && yarn web:build
+    startCommand: yarn start
     envVars:
       - key: NODE_ENV
         value: production
@@ -32,8 +39,8 @@ services:
     name: typefast-ws
     runtime: node
     plan: free
-    buildCommand: yarn install && cd apps/ws && yarn build
-    startCommand: cd apps/ws && yarn start
+    buildCommand: yarn install && yarn ws:build
+    startCommand: yarn ws:start
     envVars:
       - key: NODE_ENV
         value: production
