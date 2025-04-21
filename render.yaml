@@ -9,7 +9,7 @@ services:
     name: typefast-web
     runtime: node
     plan: free
-    buildCommand: yarn install && yarn web:build
+    buildCommand: yarn install && cd apps/web && yarn build
     startCommand: cd apps/web && yarn start
     envVars:
       - key: NODE_ENV
@@ -32,7 +32,7 @@ services:
     name: typefast-ws
     runtime: node
     plan: free
-    buildCommand: yarn && yarn ws:build
+    buildCommand: yarn install && cd apps/ws && yarn build
     startCommand: cd apps/ws && yarn start
     envVars:
       - key: NODE_ENV
