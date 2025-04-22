@@ -19,9 +19,9 @@
     "lint:fix": "turbo lint --fix",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
-    "ws:dev": "cd apps/ws && yarn dev",
-    "ws:build": "cd apps/ws && yarn build",
-    "ws:start": "cd apps/ws && yarn start"
+    "ws:dev": "yarn workspace @typefast/ws dev",
+    "ws:build": "yarn workspace @typefast/ws build",
+    "ws:start": "yarn workspace @typefast/ws start"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
