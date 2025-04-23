@@ -39,8 +39,8 @@ services:
     name: typefast-ws
     runtime: node
     plan: free
-    buildCommand: yarn install --production=false && yarn ws:build
-    startCommand: yarn ws:start
+    buildCommand: yarn install --production=false && cd apps/ws && yarn build
+    startCommand: cd apps/ws && yarn start
     envVars:
       - key: NODE_ENV
         value: production
