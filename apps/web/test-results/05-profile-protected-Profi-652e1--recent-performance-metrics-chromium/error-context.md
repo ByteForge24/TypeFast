@@ -1,0 +1,95 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+      - button [ref=e32] [cursor=pointer]:
+        - img
+  - main [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e36]: PEU
+      - heading "Profile E2E User" [level=1] [ref=e37]
+    - generic [ref=e38]:
+      - generic [ref=e40]:
+        - img [ref=e41]
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: Average WPM
+          - paragraph [ref=e45]: "0"
+      - generic [ref=e47]:
+        - img [ref=e48]
+        - generic [ref=e52]:
+          - paragraph [ref=e53]: Accuracy
+          - paragraph [ref=e54]: 0%
+      - generic [ref=e56]:
+        - img [ref=e57]
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: Tests Completed
+          - paragraph [ref=e61]: "0"
+      - generic [ref=e63]:
+        - img [ref=e64]
+        - generic [ref=e67]:
+          - paragraph [ref=e68]: Time Typing
+          - paragraph [ref=e69]: 0h 0m
+    - generic [ref=e71]:
+      - generic [ref=e73]:
+        - img [ref=e74]
+        - generic [ref=e80]: All-Time Best Scores
+      - generic [ref=e82]:
+        - tablist [ref=e83]:
+          - tab "Time Mode" [selected] [ref=e84] [cursor=pointer]:
+            - img [ref=e85]
+            - text: Time Mode
+          - tab "Words Mode" [ref=e88] [cursor=pointer]:
+            - img [ref=e89]
+            - text: Words Mode
+        - tabpanel "Time Mode" [ref=e91]:
+          - generic [ref=e92]:
+            - generic [ref=e94]:
+              - img [ref=e95]
+              - generic [ref=e98]:
+                - paragraph [ref=e99]: 15 Seconds
+                - paragraph [ref=e100]: 0 WPM
+            - generic [ref=e102]:
+              - img [ref=e103]
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: 30 Seconds
+                - paragraph [ref=e108]: 0 WPM
+    - generic [ref=e109]:
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - img [ref=e113]
+          - generic [ref=e115]: Recent Performance
+        - generic [ref=e116]:
+          - button "Bar Chart" [ref=e117] [cursor=pointer]:
+            - text: Bar Chart
+            - img
+          - button "Last Week" [ref=e118] [cursor=pointer]:
+            - text: Last Week
+            - img
+      - img [ref=e123]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e132] [cursor=pointer]:
+    - img [ref=e133]
+  - alert [ref=e136]
+```

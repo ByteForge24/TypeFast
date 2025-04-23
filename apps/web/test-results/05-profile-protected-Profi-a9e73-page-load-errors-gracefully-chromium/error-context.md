@@ -1,0 +1,46 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e35]:
+        - button "time" [ref=e36] [cursor=pointer]:
+          - img [ref=e37]
+          - text: time
+        - button "words" [ref=e40] [cursor=pointer]:
+          - img [ref=e41]
+          - text: words
+        - button "10" [ref=e44] [cursor=pointer]
+        - button "25" [ref=e45] [cursor=pointer]
+        - button "50" [ref=e46] [cursor=pointer]
+      - generic [ref=e47]:
+        - text: hope block perfect industry aid dream fallen couple upper baseball
+        - textbox [active] [ref=e49]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e55] [cursor=pointer]:
+    - img [ref=e56]
+  - alert [ref=e59]
+```

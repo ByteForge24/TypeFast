@@ -1,1 +1,61 @@
- # docker configuration
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: typefast-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/typefast?schema=public
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8080
+      - REDIS_URL=redis://redis:6379
+      - NEXTAUTH_SECRET=dev-secret-key-change-in-production-1234567890
+      - NEXTAUTH_URL=http://localhost:3000
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - postgres
+      - redis
+      - ws
+
+  ws:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.ws
+    container_name: typefast-ws
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - WS_PORT=8080
+      - WS_HOST=0.0.0.0
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: typefast-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=typefast
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: typefast-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

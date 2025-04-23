@@ -10,7 +10,7 @@ WORKDIR /app
 RUN yarn global add turbo@2.1.3
 COPY . .
 
-RUN turbo prune ws --docker
+RUN turbo prune @typefast/ws --docker
 
 FROM base AS installer
 
@@ -20,10 +20,10 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY --from=builder /app/out/json .
-RUN yarn install
+RUN YARN_NETWORK_TIMEOUT=1200000 yarn install --frozen-lockfile --network-timeout 1200000
 
 COPY --from=builder /app/out/full .
-RUN yarn build --filter=ws...
+RUN yarn build
 
 FROM base AS runner
 
@@ -33,4 +33,4 @@ COPY --from=installer /app/ .
 
 EXPOSE 8080
 
-CMD yarn workspace ws start
+CMD yarn workspace @typefast/ws start
