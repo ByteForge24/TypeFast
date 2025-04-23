@@ -44,7 +44,3 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: WS_PORT
-        value: "10000"
-      - key: WS_HOST
-        value: 0.0.0.0

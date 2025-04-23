@@ -1,8 +1,8 @@
 import { WebSocketServer, WebSocket, RawData } from "ws";
 import { createServer } from "http";
 
-const PORT = parseInt(process.env.WS_PORT || "8080", 10);
-const HOST = process.env.WS_HOST || "0.0.0.0";
+const PORT = process.env.PORT || 10000;
+const HOST = "0.0.0.0";
 
 // Types for internal server state
 interface UserData {
