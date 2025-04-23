@@ -11,7 +11,7 @@ WORKDIR /app
 
 RUN yarn global add turbo@2.3.3
 COPY . .
-RUN turbo prune web --docker
+RUN turbo prune @typefast/web --docker
 
 FROM base AS installer
 
@@ -21,10 +21,9 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY --from=builder /app/out/json/ .
-RUN yarn install
+RUN YARN_NETWORK_TIMEOUT=1200000 yarn install --frozen-lockfile --network-timeout 1200000
 
 COPY --from=builder /app/out/full/ .
-RUN yarn prisma:generate
 RUN yarn build
 
 FROM base AS runner

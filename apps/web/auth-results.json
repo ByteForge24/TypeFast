@@ -1,0 +1,594 @@
+﻿yarn run v1.22.22
+$ C:\Users\HP\TypeFast\TypeFast\node_modules\.bin\playwright test 02-auth-flows.spec.ts --headed --project=chromium --reporter=json
+{
+  "config": {
+    "configFile": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\playwright.config.ts",
+    "rootDir": "C:/Users/HP/TypeFast/TypeFast/apps/web/e2e/browser",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/HP/TypeFast/TypeFast/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/HP/TypeFast/TypeFast/apps/web/e2e/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/HP/TypeFast/TypeFast/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/HP/TypeFast/TypeFast/apps/web/e2e/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": {
+      "command": "yarn dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "02-auth-flows.spec.ts",
+      "file": "02-auth-flows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sign In Flow",
+          "file": "02-auth-flows.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load auth page and display sign-in form",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11674,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:49:42.017Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-c85c8c8cfc9e2e887d3b",
+              "file": "02-auth-flows.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should successfully sign in with valid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30718,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n    at C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts:46:16",
+                        "location": {
+                          "file": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts",
+                          "column": 16,
+                          "line": 46
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 44 |\u001b[39m     \n \u001b[90m 45 |\u001b[39m     \u001b[90m// Wait for the sign-in action to complete and redirect\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 46 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[35m/\\/(type|leaderboard|multiplayer|profile|)?$/\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 47 |\u001b[39m       timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 48 |\u001b[39m       waitUntil\u001b[33m:\u001b[39m \u001b[32m'load'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 49 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts",
+                            "column": 16,
+                            "line": 46
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n\n  44 |     \n  45 |     // Wait for the sign-in action to complete and redirect\n> 46 |     await page.waitForURL(/\\/(type|leaderboard|multiplayer|profile|)?$/, {\n     |                ^\n  47 |       timeout: 15000,\n  48 |       waitUntil: 'load',\n  49 |     });\n    at C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts:46:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[Fixture] User test-e2e@typefast.local already exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:49:55.323Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\test-results\\02-auth-flows-Sign-In-Flow-8bf4c-n-in-with-valid-credentials-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\test-results\\02-auth-flows-Sign-In-Flow-8bf4c-n-in-with-valid-credentials-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts",
+                        "column": 16,
+                        "line": 46
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-139bdddce747584e3dd9",
+              "file": "02-auth-flows.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should reject sign in with invalid password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8217,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Fixture] User test-e2e@typefast.local already exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:50:37.642Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-dc300542fd4c0ae57b9c",
+              "file": "02-auth-flows.spec.ts",
+              "line": 55,
+              "column": 3
+            },
+            {
+              "title": "should reject sign in with non-existent email",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6853,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:50:48.067Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-d041a306a442c2011639",
+              "file": "02-auth-flows.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should show validation errors for empty fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6403,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:50:55.010Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-fa0a91357da94c2b1fdc",
+              "file": "02-auth-flows.spec.ts",
+              "line": 101,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Sign Up Flow",
+          "file": "02-auth-flows.spec.ts",
+          "line": 117,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display sign-up mode option",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4718,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:51:01.498Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-d84045118de1c41795c0",
+              "file": "02-auth-flows.spec.ts",
+              "line": 118,
+              "column": 3
+            },
+            {
+              "title": "should show Google OAuth button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4105,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:51:06.409Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-65fda7a43c2aa0a8b2fc",
+              "file": "02-auth-flows.spec.ts",
+              "line": 147,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Logout Flow",
+          "file": "02-auth-flows.spec.ts",
+          "line": 165,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should successfully log out an authenticated user",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24868,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Fixture] User profile-e2e@typefast.local already exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:51:10.663Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-ecc060f726c4b82565c5",
+              "file": "02-auth-flows.spec.ts",
+              "line": 166,
+              "column": 3
+            },
+            {
+              "title": "should redirect to auth page when accessing profile after logout",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 35286,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts",
+                            "column": 18,
+                            "line": 242
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/profile\", waiting until \"load\"\u001b[22m\n\n\n  240 |\n  241 |       // Try to access profile\n> 242 |       await page.goto('http://localhost:3000/profile');\n      |                  ^\n  243 |\n  244 |       // Should redirect away from profile\n  245 |       await page.waitForURL(/auth|login/, { timeout: 5000 }).catch(() => {\n    at C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\e2e\\browser\\02-auth-flows.spec.ts:242:18"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[Fixture] User profile-e2e@typefast.local already exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:51:35.642Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\test-results\\02-auth-flows-Logout-Flow--44e25-essing-profile-after-logout-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\HP\\TypeFast\\TypeFast\\apps\\web\\test-results\\02-auth-flows-Logout-Flow--44e25-essing-profile-after-logout-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-8c05d542b8dc0cc4ad2b",
+              "file": "02-auth-flows.spec.ts",
+              "line": 210,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Auth Redirect Behavior",
+          "file": "02-auth-flows.spec.ts",
+          "line": 255,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should redirect authenticated users away from auth page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 28272,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Fixture] User profile-e2e@typefast.local already exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:52:20.678Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-2e0cd0627bfeb0dc3fdf",
+              "file": "02-auth-flows.spec.ts",
+              "line": 256,
+              "column": 3
+            },
+            {
+              "title": "should require authentication to access profile page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8487,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-03-19T18:52:50.187Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "af01c09741dafddf9b02-7a68c38a1700ee576f10",
+              "file": "02-auth-flows.spec.ts",
+              "line": 271,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-19T18:49:11.759Z",
+    "duration": 242108.435,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+node.exe : error Command failed with exit code 1.
+At C:\Users\HP\AppData\Roaming\npm\yarn.ps1:24 char:5
++     & "node$exe"  "$basedir/node_modules/yarn/bin/yarn.js" $args
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error Command failed with exit code 1 
+   .:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

@@ -69,12 +69,13 @@ const MultiplayerPage = () => {
   }, []);
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="min-h-screen text-neutral-200"
-    >
+    <main>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="min-h-screen text-neutral-200"
+      >
       <div className="w-full max-w-5xl mx-auto space-y-8 pb-16 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
@@ -111,6 +112,7 @@ const MultiplayerPage = () => {
         </motion.div>
       </div>
     </motion.div>
+    </main>
   );
 };
 

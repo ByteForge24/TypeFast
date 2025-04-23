@@ -105,7 +105,7 @@ const RoomPage = (props: { params: Promise<{ code: string }> }) => {
           break;
       }
     };
-  }, [code, socket, status, isRaceStarted]);
+  }, [code, socket, status, session]);
 
   useEffect(() => {
     joinRoom();

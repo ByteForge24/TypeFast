@@ -17,7 +17,11 @@ const authConfig = {
     }),
     Credentials({
       async authorize(credentials) {
-        const validation = signInSchema.safeParse(credentials);
+        // Extract only email and password from credentials (frontend may pass additional fields like redirect, callbackUrl)
+        const validation = signInSchema.safeParse({
+          email: credentials?.email,
+          password: credentials?.password,
+        });
         if (!validation.success) return null;
 
         const { email, password } = validation.data;
@@ -25,7 +29,15 @@ const authConfig = {
         if (!user || !user.password) return null;
 
         const match = await bcrypt.compare(password, user.password);
-        return match ? user : null;
+        if (!match) return null;
+
+        // Return user object with required fields for NextAuth
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
       },
     }),
   ],

@@ -1,0 +1,31 @@
+{
+  "name": "typefast-tests",
+  "version": "1.0.0",
+  "description": "Test suite for TypeFast typing application",
+  "type": "module",
+  "scripts": {
+    "test": "node --test *.test.mjs",
+    "test:components": "node --test components.test.mjs",
+    "test:integration": "node --test integration.test.mjs",
+    "test:e2e": "node --test e2e.test.mjs",
+    "test:performance": "node --test performance-accessibility.test.mjs",
+    "test:watch": "node --test --watch *.test.mjs",
+    "test:verbose": "node --test --reporter=verbose *.test.mjs",
+    "test:coverage": "node --test --coverage *.test.mjs",
+    "test:ci": "node --test --reporter=json > test-results.json 2>&1"
+  },
+  "keywords": [
+    "testing",
+    "e2e",
+    "unit-tests",
+    "integration-tests",
+    "accessibility",
+    "performance"
+  ],
+  "devDependencies": {
+    "node": ">=20.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

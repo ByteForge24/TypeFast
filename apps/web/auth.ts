@@ -18,14 +18,40 @@ async function getAuthInstance() {
     adapter: PrismaAdapter(prisma),
     session: { strategy: "jwt" },
     callbacks: {
+      async jwt({ token, user, account }) {
+        // When user logs in (initially), add their ID to the token
+        if (user) {
+          token.sub = user.id;
+          // Preserve user fields in token for session callback
+          token.email = user.email;
+          token.name = user.name;
+          token.image = user.image;
+        }
+        return token;
+      },
       async signIn({ user, account }) {
-        if (account?.provider !== "credentials") return true;
-        const existing = await getUserById(user.id!);
+        // OAuth providers (Google, GitHub, etc.) - allow sign-in
+        // PrismaAdapter handles user creation/linking before this callback
+        if (account?.provider !== "credentials") {
+          return true;
+        }
+        
+        // Credentials provider - verify email is verified
+        if (!user.id) {
+          return false;
+        }
+        
+        const existing = await getUserById(user.id);
         return !!existing?.emailVerified;
       },
       async session({ session, token }) {
+        // Add user ID from token sub claim
         if (session.user && token.sub) {
           session.user.id = token.sub;
+          // Ensure email, name, image are available in session from token
+          if (token.email) session.user.email = token.email as string;
+          if (token.name) session.user.name = token.name as string;
+          if (token.image) session.user.image = token.image as string;
         }
         return session;
       },
