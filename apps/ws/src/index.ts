@@ -1,7 +1,7 @@
 import { WebSocketServer, WebSocket, RawData } from "ws";
 import { createServer } from "http";
 
-const PORT = process.env.PORT || 10000;
+const PORT = parseInt(process.env.PORT || "10000", 10);
 const HOST = "0.0.0.0";
 
 // Types for internal server state
