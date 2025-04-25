@@ -118,4 +118,4 @@ export const NAVLINKS = [
 ];
 
 export const WS_URL =
-  process.env.NEXT_PUBLIC_WS_URL ?? "https://ws.TypeFast.club";
+  process.env.NEXT_PUBLIC_WS_URL ?? "wss://typefast-ws.onrender.com";
