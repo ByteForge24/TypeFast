@@ -9,11 +9,11 @@ export default defineConfig({
   reporter: [['html'], ['list']],
   timeout: 60 * 1000,
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
-  webServer: {
+  webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
     command: 'yarn dev',
     url: 'http://localhost:3000',
     reuseExistingServer: true,

@@ -16,7 +16,9 @@
     "db:studio": "cd DB_prisma && prisma studio",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test --config=playwright.config.ts",
+    "test:e2e:deploy": "playwright test --config=playwright.config.ts e2e/browser/render-deployment.spec.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
