@@ -104,7 +104,7 @@ export const test = base.extend<{
     );
     
     // Navigate to auth page and log in
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
     await page.fill('input[name="email"]', TEST_USERS.profile.email);
     await page.fill('input[name="password"]', TEST_USERS.profile.password);
     
@@ -131,7 +131,7 @@ export const test = base.extend<{
     );
     
     // Navigate to auth page and log in
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
     await page.fill('input[name="email"]', TEST_USERS.profile.email);
     await page.fill('input[name="password"]', TEST_USERS.profile.password);
     await page.click('button[type="submit"]');
