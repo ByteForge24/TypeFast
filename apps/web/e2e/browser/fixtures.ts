@@ -19,9 +19,26 @@ dotenv.config({ path: path.join(__dirname, '../../.env.local') });
 let prisma: any = null;
 async function getPrismaClient() {
   if (!prisma) {
-    // Import the prisma singleton directly
-    const prismaModule = await import('../../DB_prisma/src/index');
-    prisma = prismaModule.default;
+    // Check if running against deployed URLs
+    const baseUrl = process.env.PLAYWRIGHT_BASE_URL || '';
+    const isDeployed = baseUrl.startsWith('https://');
+    
+    if (isDeployed && process.env.RENDER_DATABASE_URL) {
+      // For deployed testing, dynamically create a Prisma client with Render DB
+      console.log('[Fixture] Using RENDER_DATABASE_URL for deployed tests');
+      const { PrismaClient } = await import('@prisma/client');
+      prisma = new PrismaClient({
+        datasources: {
+          db: {
+            url: process.env.RENDER_DATABASE_URL,
+          },
+        },
+      });
+    } else {
+      // Import the prisma singleton directly for local testing
+      const prismaModule = await import('../../DB_prisma/src/index');
+      prisma = prismaModule.default;
+    }
   }
   return prisma;
 }
