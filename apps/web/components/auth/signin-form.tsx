@@ -73,9 +73,11 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
           return;
         }
 
-        if (signInResult?.ok && signInResult?.url) {
+        if (signInResult?.ok) {
           toast.success(result.message);
-          window.location.href = signInResult.url;
+          // Use the returned URL from NextAuth, or fallback to callbackUrl
+          const redirectUrl = signInResult.url || callbackUrl;
+          window.location.href = redirectUrl;
         }
       } catch (error) {
         console.error("Sign in error:", error);
