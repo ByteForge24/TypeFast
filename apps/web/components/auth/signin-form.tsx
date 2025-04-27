@@ -64,6 +64,9 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
           callbackUrl,
         });
 
+        console.log("[SignInForm] signInResult:", signInResult);
+        console.log("[SignInForm] callbackUrl:", callbackUrl);
+
         if (signInResult?.error) {
           const errorMsg =
             signInResult.error === "CredentialsSignin"
@@ -77,7 +80,11 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
           toast.success(result.message);
           // Use the returned URL from NextAuth, or fallback to callbackUrl
           const redirectUrl = signInResult.url || callbackUrl;
+          console.log("[SignInForm] Redirecting to:", redirectUrl);
           window.location.href = redirectUrl;
+        } else {
+          console.warn("[SignInForm] Sign-in result is not OK:", signInResult);
+          toast.error("Sign-in failed - please try again");
         }
       } catch (error) {
         console.error("Sign in error:", error);

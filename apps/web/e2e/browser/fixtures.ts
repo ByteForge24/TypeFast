@@ -120,8 +120,16 @@ export const test = base.extend<{
       TEST_USERS.profile.name
     );
     
-    // Navigate to auth page and log in
-    await page.goto('/auth');
+    // Navigate to auth page with callback URL for profile redirect after login
+    await page.goto('/auth?callbackUrl=/profile');
+    
+    // Monitor console for sign-in errors
+    page.on('console', msg => {
+      if (msg.type() === 'log' && msg.text().includes('[SignInForm]')) {
+        console.log('[Page Console]', msg.text());
+      }
+    });
+    
     await page.fill('input[name="email"]', TEST_USERS.profile.email);
     await page.fill('input[name="password"]', TEST_USERS.profile.password);
     
@@ -129,10 +137,18 @@ export const test = base.extend<{
     const submitButton = page.locator('button[type="submit"]');
     await submitButton.click();
     
-    // Wait for navigation to complete
-    await page.waitForURL(/\/(type|leaderboard|multiplayer|profile)?$/, { waitUntil: 'domcontentloaded' }).catch((error) => {
+    // Wait for navigation to complete - either /type or /profile
+    try {
+      await page.waitForURL(/\/(type|profile|leaderboard|multiplayer)?$/, { 
+        waitUntil: 'domcontentloaded',
+        timeout: 30000 
+      });
+    } catch (error) {
       console.log('[Fixture] Navigation error during login:', error.message);
-    });
+      const currentUrl = page.url();
+      console.log('[Fixture] Current URL after timeout:', currentUrl);
+      throw error;
+    }
     
     await use(page);
   },
