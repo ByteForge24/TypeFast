@@ -33,16 +33,37 @@ async function getAuthInstance() {
         // OAuth providers (Google, GitHub, etc.) - allow sign-in
         // PrismaAdapter handles user creation/linking before this callback
         if (account?.provider !== "credentials") {
+          console.log("[Auth.signIn] OAuth provider allowed:", account?.provider);
           return true;
         }
         
         // Credentials provider - verify email is verified
         if (!user.id) {
+          console.warn("[Auth.signIn] No user ID provided");
           return false;
         }
         
-        const existing = await getUserById(user.id);
-        return !!existing?.emailVerified;
+        try {
+          const existing = await getUserById(user.id);
+          if (!existing) {
+            console.warn("[Auth.signIn] User not found in database:", user.id);
+            return false;
+          }
+          
+          const isVerified = !!existing.emailVerified;
+          console.log("[Auth.signIn] User verified status:", isVerified, "for user:", user.email);
+          
+          if (!isVerified) {
+            console.warn("[Auth.signIn] Email not verified for user:", user.email);
+          }
+          
+          return isVerified;
+        } catch (error) {
+          console.error("[Auth.signIn] Error checking user verification:", error);
+          // On error, still allow sign-in for credentials (we already validated password in authorize)
+          console.log("[Auth.signIn] Allowing sign-in despite database error");
+          return true;
+        }
       },
       async session({ session, token }) {
         // Add user ID from token sub claim

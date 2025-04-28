@@ -7,7 +7,7 @@ import { test, expect, TEST_USERS, createTestUser } from './fixtures';
 
 test.describe('Sign In Flow', () => {
   test('should load auth page and display sign-in form', async ({ page }) => {
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Check page loaded
     await expect(page).toHaveTitle(/TypeFast/);
@@ -32,7 +32,7 @@ test.describe('Sign In Flow', () => {
     const testUser = TEST_USERS.standard;
     await createTestUser(testUser.email, testUser.password, testUser.name);
 
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Fill in credentials
     await page.fill('input[name="email"]', testUser.email);
@@ -54,7 +54,7 @@ test.describe('Sign In Flow', () => {
     const testUser = TEST_USERS.standard;
     await createTestUser(testUser.email, testUser.password, testUser.name);
 
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Fill in wrong credentials
     await page.fill('input[name="email"]', testUser.email);
@@ -78,7 +78,7 @@ test.describe('Sign In Flow', () => {
   });
 
   test('should reject sign in with non-existent email', async ({ page }) => {
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Try to login with non-existent user
     await page.fill('input[name="email"]', 'nonexistent@typefast.local');
@@ -96,7 +96,7 @@ test.describe('Sign In Flow', () => {
   });
 
   test('should show validation errors for empty fields', async ({ page }) => {
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Try to submit without filling anything
     const submitButton = page.locator('button[type="submit"]');
@@ -113,7 +113,7 @@ test.describe('Sign In Flow', () => {
 
 test.describe('Sign Up Flow', () => {
   test('should display sign-up mode option', async ({ page }) => {
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Look for sign-up toggle/tab
     const signUpTab = page.locator('button:has-text("Sign up")').first();
@@ -142,7 +142,7 @@ test.describe('Sign Up Flow', () => {
   });
 
   test('should show Google OAuth button', async ({ page }) => {
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
 
     // Check for Google auth button
     const googleButton = page.locator('button:has-text("Google")').first();
@@ -210,7 +210,7 @@ test.describe('Logout Flow', () => {
       const testUser = TEST_USERS.profile;
       await createTestUser(testUser.email, testUser.password, testUser.name);
 
-      await page.goto('http://localhost:3000/auth');
+      await page.goto('/auth');
 
       // Login
       await page.fill('input[name="email"]', testUser.email);
@@ -233,7 +233,7 @@ test.describe('Logout Flow', () => {
       }
 
       // Try to access profile
-      await page.goto('http://localhost:3000/profile', { waitUntil: 'domcontentloaded', timeout: 30000 });
+      await page.goto('/profile', { waitUntil: 'domcontentloaded', timeout: 30000 });
 
       // Should redirect away from profile or show auth requirement
       await page.waitForURL(/auth|login/, { timeout: 5000 }).catch(() => {
@@ -250,7 +250,7 @@ test.describe('Auth Redirect Behavior', () => {
   test('should redirect authenticated users away from auth page',
     async ({ authenticatedPage }) => {
       // Try to go to auth page while authenticated
-      await authenticatedPage.goto('http://localhost:3000/auth', { waitUntil: 'domcontentloaded', timeout: 20000 });
+      await authenticatedPage.goto('/auth', { waitUntil: 'domcontentloaded', timeout: 20000 });
 
       const url = authenticatedPage.url();
 
@@ -263,7 +263,7 @@ test.describe('Auth Redirect Behavior', () => {
     page,
   }) => {
     // Fresh page (not authenticated)
-    await page.goto('http://localhost:3000/profile', { waitUntil: 'domcontentloaded' });
+    await page.goto('/profile', { waitUntil: 'domcontentloaded' });
 
     // Should redirect to auth page
     const url = page.url();
