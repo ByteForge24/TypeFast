@@ -1,0 +1,53 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]: Welcome to TypeFast
+      - generic [ref=e37]: Sign in to your account or create a new one
+    - generic [ref=e39]:
+      - tablist [ref=e40]:
+        - tab "Sign In" [selected] [ref=e41] [cursor=pointer]
+        - tab "Sign Up" [ref=e42] [cursor=pointer]
+      - tabpanel "Sign In" [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e46]:
+            - text: Email
+            - generic [ref=e47]:
+              - img [ref=e48]
+              - textbox "john@gmail.com" [ref=e51]: profile-e2e@typefast.local
+          - generic [ref=e53]:
+            - text: Password
+            - generic [ref=e54]:
+              - img [ref=e55]
+              - textbox "●●●●●●●●" [ref=e58]: Test654321!
+          - button [disabled]
+    - button "Continue with Google" [ref=e60] [cursor=pointer]:
+      - img
+      - generic [ref=e61]: Continue with Google
+  - region "Notifications alt+T"
+  - alert [ref=e62]
+```
