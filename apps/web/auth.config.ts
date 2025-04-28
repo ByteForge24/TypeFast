@@ -37,6 +37,7 @@ const authConfig = {
           email: user.email,
           name: user.name,
           image: user.image,
+          emailVerified: user.emailVerified,
         };
       },
     }),
