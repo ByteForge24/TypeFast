@@ -3,7 +3,7 @@ export const runtime = "nodejs"; // ✅ REQUIRED
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
-import { getUserById } from "./db/user";
+
 
 let authInstance: any = null;
 
@@ -38,32 +38,22 @@ async function getAuthInstance() {
         }
         
         // Credentials provider - verify email is verified
+        // The authorize function already returned emailVerified in the user object
         if (!user.id) {
           console.warn("[Auth.signIn] No user ID provided");
           return false;
         }
         
-        try {
-          const existing = await getUserById(user.id);
-          if (!existing) {
-            console.warn("[Auth.signIn] User not found in database:", user.id);
-            return false;
-          }
-          
-          const isVerified = !!existing.emailVerified;
-          console.log("[Auth.signIn] User verified status:", isVerified, "for user:", user.email);
-          
-          if (!isVerified) {
-            console.warn("[Auth.signIn] Email not verified for user:", user.email);
-          }
-          
-          return isVerified;
-        } catch (error) {
-          console.error("[Auth.signIn] Error checking user verification:", error);
-          // On error, still allow sign-in for credentials (we already validated password in authorize)
-          console.log("[Auth.signIn] Allowing sign-in despite database error");
-          return true;
+        // Use emailVerified from the user object returned by authorize
+        // to avoid extra database query that might timeout on Render
+        const isVerified = !!(user as any).emailVerified;
+        console.log("[Auth.signIn] Credentials provider auth - emailVerified:", isVerified, "for user:", user.email);
+        
+        if (!isVerified) {
+          console.warn("[Auth.signIn] Email not verified for user:", user.email);
         }
+        
+        return isVerified;
       },
       async session({ session, token }) {
         // Add user ID from token sub claim
