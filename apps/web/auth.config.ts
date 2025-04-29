@@ -31,13 +31,15 @@ const authConfig = {
         const match = await bcrypt.compare(password, user.password);
         if (!match) return null;
 
+        // Check email is verified
+        if (!user.emailVerified) return null;
+
         // Return user object with required fields for NextAuth
         return {
           id: user.id,
           email: user.email,
           name: user.name,
           image: user.image,
-          emailVerified: user.emailVerified,
         };
       },
     }),
