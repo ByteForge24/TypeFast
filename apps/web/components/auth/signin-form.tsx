@@ -14,7 +14,6 @@ import { Input } from "../../ui/src/components/ui/input";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import { signInSchema, SignInValues } from "../../common/src/schemas";
 import { useTransition } from "react";
-import { login } from "@/actions/login";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/constants";
@@ -50,21 +49,20 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
   const onSignIn = async (values: SignInValues) => {
     startTransition(async () => {
       try {
-        const result = await login(values);
-
-        if (!result.success) {
-          toast.error(result.message);
-          return;
-        }
-
-        // Use NextAuth's built-in redirect instead of manual handling
-        // This is more reliable than redirect: false + window.location.href
-        await signIn("credentials", {
+        // Use NextAuth's built-in signin flow exclusively
+        // This handles validation, authentication, and redirect in one cohesive flow
+        const result = await signIn("credentials", {
           email: values.email,
           password: values.password,
-          redirect: true,  // Let NextAuth handle the redirect
+          redirect: true,  // Let NextAuth handle the redirect automatically
           callbackUrl,
         });
+
+        // If signIn returns a result with error, show it
+        // With redirect: true, successful signin will automatically redirect
+        if (result?.error) {
+          toast.error(result.error || "Sign in failed");
+        }
       } catch (error) {
         console.error("Sign in error:", error);
         toast.error("An unexpected error occurred.");

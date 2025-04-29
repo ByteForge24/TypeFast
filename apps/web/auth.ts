@@ -29,31 +29,9 @@ async function getAuthInstance() {
         }
         return token;
       },
-      async signIn({ user, account }) {
-        // OAuth providers (Google, GitHub, etc.) - allow sign-in
-        // PrismaAdapter handles user creation/linking before this callback
-        if (account?.provider !== "credentials") {
-          console.log("[Auth.signIn] OAuth provider allowed:", account?.provider);
-          return true;
-        }
-        
-        // Credentials provider - verify email is verified
-        // The authorize function already returned emailVerified in the user object
-        if (!user.id) {
-          console.warn("[Auth.signIn] No user ID provided");
-          return false;
-        }
-        
-        // Use emailVerified from the user object returned by authorize
-        // to avoid extra database query that might timeout on Render
-        const isVerified = !!(user as any).emailVerified;
-        console.log("[Auth.signIn] Credentials provider auth - emailVerified:", isVerified, "for user:", user.email);
-        
-        if (!isVerified) {
-          console.warn("[Auth.signIn] Email not verified for user:", user.email);
-        }
-        
-        return isVerified;
+      async signIn({ account }) {
+        // Allow OAuth and credentials - authorize function already validated credentials
+        return account?.provider === "credentials" || account?.provider === "google";
       },
       async session({ session, token }) {
         // Add user ID from token sub claim
