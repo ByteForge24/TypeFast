@@ -57,35 +57,14 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
           return;
         }
 
-        const signInResult = await signIn("credentials", {
+        // Use NextAuth's built-in redirect instead of manual handling
+        // This is more reliable than redirect: false + window.location.href
+        await signIn("credentials", {
           email: values.email,
           password: values.password,
-          redirect: false,
+          redirect: true,  // Let NextAuth handle the redirect
           callbackUrl,
         });
-
-        console.log("[SignInForm] signInResult:", signInResult);
-        console.log("[SignInForm] callbackUrl:", callbackUrl);
-
-        if (signInResult?.error) {
-          const errorMsg =
-            signInResult.error === "CredentialsSignin"
-              ? "Invalid email or password, or email not verified."
-              : signInResult.error;
-          toast.error(errorMsg);
-          return;
-        }
-
-        if (signInResult?.ok) {
-          toast.success(result.message);
-          // Use the returned URL from NextAuth, or fallback to callbackUrl
-          const redirectUrl = signInResult.url || callbackUrl;
-          console.log("[SignInForm] Redirecting to:", redirectUrl);
-          window.location.href = redirectUrl;
-        } else {
-          console.warn("[SignInForm] Sign-in result is not OK:", signInResult);
-          toast.error("Sign-in failed - please try again");
-        }
       } catch (error) {
         console.error("Sign in error:", error);
         toast.error("An unexpected error occurred.");
