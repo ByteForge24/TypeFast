@@ -29,9 +29,10 @@ async function getAuthInstance() {
         }
         return token;
       },
-      async signIn({ account }) {
-        // Allow OAuth and credentials - authorize function already validated credentials
-        return account?.provider === "credentials" || account?.provider === "google";
+      async signIn({ account, profile, user }) {
+        // authorize() callback already validated credentials
+        // Just allow the signin to proceed (both credentials and oauth)
+        return true;
       },
       async session({ session, token }) {
         // Add user ID from token sub claim
