@@ -49,18 +49,33 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
   const onSignIn = async (values: SignInValues) => {
     startTransition(async () => {
       try {
-        // Let NextAuth handle the entire signin and redirect flow
+        // Use NextAuth's built-in signin flow with manual redirect
+        console.log("[Frontend] Calling signIn with:", values.email);
         const result = await signIn("credentials", {
           email: values.email,
           password: values.password,
-          redirect: true,  // Let NextAuth handle redirect automatically
+          redirect: false,  // Handle redirect manually
           callbackUrl,
         });
 
-        // If we get here with an error, show notification
-        // With redirect: true, successful signin redirects immediately (no return)
+        console.log("[Frontend] SignIn result:", result);
+
+        // Check for errors
         if (result?.error) {
+          console.error("[Frontend] Sign in error response:", result.error);
           toast.error(result.error || "Sign in failed");
+          return;
+        }
+
+        // Successful signin - use NextAuth's returned URL if available
+        if (result?.url) {
+          console.log("[Frontend] Redirecting to result.url:", result.url);
+          window.location.assign(result.url);
+        } else if (result?.ok) {
+          console.log("[Frontend] Redirecting to callbackUrl:", callbackUrl || DEFAULT_LOGIN_REDIRECT);
+          window.location.assign(callbackUrl || DEFAULT_LOGIN_REDIRECT);
+        } else {
+          console.warn("[Frontend] No redirect URL or ok flag in result");
         }
       } catch (error) {
         console.error("Sign in error:", error);

@@ -24,32 +24,36 @@
         - /url: /profile
         - img [ref=e28]
         - paragraph [ref=e31]: Profile
-  - generic [ref=e34]:
-    - generic [ref=e35]:
-      - generic [ref=e36]: Welcome to TypeFast
-      - generic [ref=e37]: Sign in to your account or create a new one
-    - generic [ref=e39]:
-      - tablist [ref=e40]:
-        - tab "Sign In" [selected] [ref=e41] [cursor=pointer]
-        - tab "Sign Up" [ref=e42] [cursor=pointer]
-      - tabpanel "Sign In" [ref=e43]:
-        - generic [ref=e44]:
-          - generic [ref=e46]:
-            - text: Email
-            - generic [ref=e47]:
-              - img [ref=e48]
-              - textbox "john@gmail.com" [ref=e51]: test-e2e@typefast.local
-          - generic [ref=e53]:
-            - text: Password
-            - generic [ref=e54]:
-              - img [ref=e55]
-              - textbox "●●●●●●●●" [ref=e58]: Test123456!
-          - button "Sign In" [ref=e59] [cursor=pointer]:
-            - text: Sign In
-            - img
-    - button "Continue with Google" [ref=e61] [cursor=pointer]:
-      - img
-      - generic [ref=e62]: Continue with Google
+  - generic [ref=e33]:
+    - generic [ref=e34]:
+      - img [ref=e35]
+      - paragraph [ref=e37]: Invalid email or password, or email not verified.
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: Welcome to TypeFast
+        - generic [ref=e41]: Sign in to your account or create a new one
+      - generic [ref=e43]:
+        - tablist [ref=e44]:
+          - tab "Sign In" [selected] [ref=e45] [cursor=pointer]
+          - tab "Sign Up" [ref=e46] [cursor=pointer]
+        - tabpanel "Sign In" [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e50]:
+              - text: Email
+              - generic [ref=e51]:
+                - img [ref=e52]
+                - textbox "john@gmail.com" [ref=e55]
+            - generic [ref=e57]:
+              - text: Password
+              - generic [ref=e58]:
+                - img [ref=e59]
+                - textbox "●●●●●●●●" [ref=e62]
+            - button "Sign In" [ref=e63] [cursor=pointer]:
+              - text: Sign In
+              - img
+      - button "Continue with Google" [ref=e65] [cursor=pointer]:
+        - img
+        - generic [ref=e66]: Continue with Google
   - region "Notifications alt+T"
-  - alert [ref=e63]
+  - alert [ref=e67]
 ```
