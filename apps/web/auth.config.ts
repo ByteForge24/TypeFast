@@ -17,7 +17,7 @@ const authConfig = {
     }),
     Credentials({
       async authorize(credentials) {
-        // Extract only email and password from credentials (frontend may pass additional fields like redirect, callbackUrl)
+        // Extract only email and password from credentials
         const validation = signInSchema.safeParse({
           email: credentials?.email,
           password: credentials?.password,
@@ -46,14 +46,8 @@ const authConfig = {
           return null;
         }
 
-        // Check email is verified
-        if (!user.emailVerified) {
-          console.error("[AUTH] Email not verified for:", email);
-          return null;
-        }
-
         console.log("[AUTH] Authorization successful for:", email);
-        // Return user object with required fields for NextAuth
+        // Return user object - email verification happens at session level
         return {
           id: user.id,
           email: user.email,
