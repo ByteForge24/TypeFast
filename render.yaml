@@ -41,6 +41,7 @@ services:
     plan: free
     buildCommand: yarn install --production=false && cd apps/ws && yarn build
     startCommand: cd apps/ws && yarn start
+    healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production

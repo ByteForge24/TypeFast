@@ -248,7 +248,16 @@ function handleSendMessage(ws: WebSocket, data: ClientMessage) {
 }
 
 // Create HTTP server for WebSocket
-const server = createServer();
+const server = createServer((req, res) => {
+  // Handle health check and basic HTTP requests
+  if (req.url === "/health" || req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("OK");
+  } else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Not Found");
+  }
+});
 
 // Create WebSocket server
 const wss = new WebSocketServer({ server });
