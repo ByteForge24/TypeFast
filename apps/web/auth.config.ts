@@ -22,18 +22,37 @@ const authConfig = {
           email: credentials?.email,
           password: credentials?.password,
         });
-        if (!validation.success) return null;
+        if (!validation.success) {
+          console.error("[AUTH] Validation failed:", validation.error);
+          return null;
+        }
 
         const { email, password } = validation.data;
+        console.log("[AUTH] Attempting to authorize user:", email);
+        
         const user = await getUserByEmail(email);
-        if (!user || !user.password) return null;
+        if (!user) {
+          console.error("[AUTH] User not found:", email);
+          return null;
+        }
+        if (!user.password) {
+          console.error("[AUTH] User has no password:", email);
+          return null;
+        }
 
         const match = await bcrypt.compare(password, user.password);
-        if (!match) return null;
+        if (!match) {
+          console.error("[AUTH] Password mismatch for:", email);
+          return null;
+        }
 
         // Check email is verified
-        if (!user.emailVerified) return null;
+        if (!user.emailVerified) {
+          console.error("[AUTH] Email not verified for:", email);
+          return null;
+        }
 
+        console.log("[AUTH] Authorization successful for:", email);
         // Return user object with required fields for NextAuth
         return {
           id: user.id,
