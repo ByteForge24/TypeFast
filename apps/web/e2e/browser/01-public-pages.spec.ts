@@ -7,7 +7,7 @@ import { test, expect } from './fixtures';
 
 test.describe('Landing Page', () => {
   test('should load and display hero section', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
 
     // Check page title
     const title = await page.title();
@@ -25,7 +25,7 @@ test.describe('Landing Page', () => {
   });
 
   test('should display navigation header', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
 
     // Check header exists
     const header = page.locator('header');
@@ -38,7 +38,7 @@ test.describe('Landing Page', () => {
   });
 
   test('should display features section', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
 
     // Scroll down to see features
     await page.evaluate(() => window.scrollBy(0, window.innerHeight));
@@ -49,7 +49,7 @@ test.describe('Landing Page', () => {
   });
 
   test('should have functional footer', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
 
     // Scroll to bottom
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -60,7 +60,7 @@ test.describe('Landing Page', () => {
   });
 
   test('should have working CTA button', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
 
     // Wait for page to fully load
     await page.waitForLoadState('networkidle');
@@ -92,7 +92,7 @@ test.describe('Landing Page', () => {
 
 test.describe('Navigation', () => {
   test('should navigate to Type page from header', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     
     // Wait for page to be fully loaded
     await page.waitForLoadState('networkidle');
@@ -108,7 +108,7 @@ test.describe('Navigation', () => {
   });
 
   test('should navigate to Leaderboard page from header', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     
     // Wait for page to be fully loaded
     await page.waitForLoadState('networkidle');
@@ -126,7 +126,7 @@ test.describe('Navigation', () => {
   test('should navigate to Multiplayer page from header', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     
     // Wait for page to be fully loaded
     await page.waitForLoadState('networkidle');
@@ -142,7 +142,7 @@ test.describe('Navigation', () => {
   });
 
   test('should navigate to Auth page from header', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     
     // Wait for page to be fully loaded
     await page.waitForLoadState('networkidle');
@@ -159,20 +159,20 @@ test.describe('Navigation', () => {
   });
 
   test('should handle route transitions smoothly', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
     expect(page.url()).toContain('/type');
 
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
     expect(page.url()).toContain('/leaderboard');
 
-    await page.goto('http://localhost:3000');
-    expect(page.url()).toBe('http://localhost:3000/');
+    await page.goto('/');
+    expect(page.url()).toBe('//');
   });
 });
 
 test.describe('Public Pages Content', () => {
   test('Type page should load the typing interface', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
     
     // Wait for page to load
     await page.waitForLoadState('networkidle');
@@ -188,7 +188,7 @@ test.describe('Public Pages Content', () => {
   test('Leaderboard page should display leaderboard content', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
     
     // Wait for page to load
     await page.waitForLoadState('networkidle');
@@ -208,7 +208,7 @@ test.describe('Public Pages Content', () => {
   test('Multiplayer page should display multiplayer interface', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Check page loaded
     await expect(page).toHaveTitle(/TypeFast/);
@@ -222,7 +222,7 @@ test.describe('Public Pages Content', () => {
 test.describe('Error Handling and Redirects', () => {
   test('should handle non-existent routes gracefully', async ({ page }) => {
     // Try to visit a non-existent route
-    const response = await page.goto('http://localhost:3000/non-existent-page');
+    const response = await page.goto('/non-existent-page');
 
     // Should either redirect or show error page
     expect(page.url()).toBeTruthy();
@@ -231,7 +231,7 @@ test.describe('Error Handling and Redirects', () => {
   test('should protect profile page - redirect unauthenticated users', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/profile');
+    await page.goto('/profile');
 
     // Should redirect to auth or show auth prompt
     await page.waitForURL(/auth|login/, { timeout: 5000 }).catch(() => {
@@ -243,3 +243,6 @@ test.describe('Error Handling and Redirects', () => {
     expect(url).toMatch(/auth|login|profile/);
   });
 });
+
+
+

@@ -7,7 +7,7 @@ import { test, expect, authenticatedPage } from './fixtures';
 
 test.describe('Leaderboard Page', () => {
   test('should load leaderboard page successfully', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     // Check page loaded
     await expect(page).toHaveTitle(/TypeFast/);
@@ -18,7 +18,7 @@ test.describe('Leaderboard Page', () => {
   });
 
   test('should display leaderboard data or empty state', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     await page.waitForLoadState('networkidle');
 
@@ -36,7 +36,7 @@ test.describe('Leaderboard Page', () => {
   });
 
   test('should display user rankings if data exists', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     await page.waitForLoadState('networkidle');
 
@@ -50,7 +50,7 @@ test.describe('Leaderboard Page', () => {
   });
 
   test('should show graceful degradation without Redis', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     await page.waitForLoadState('networkidle');
 
@@ -63,7 +63,7 @@ test.describe('Leaderboard Page', () => {
   });
 
   test('should be navigable and responsive', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     // Check responsiveness
     const viewport = page.viewportSize();
@@ -75,22 +75,22 @@ test.describe('Leaderboard Page', () => {
   });
 
   test('should have working navigation back to home', async ({ page }) => {
-    await page.goto('http://localhost:3000/leaderboard');
+    await page.goto('/leaderboard');
 
     // Look for home/back link
     const homeLink = page.locator('a:has-text("Home")').first();
 
     if (await homeLink.isVisible({ timeout: 5000 })) {
       await homeLink.click();
-      await page.waitForURL('http://localhost:3000/');
-      expect(page.url()).toBe('http://localhost:3000/');
+      await page.waitForURL('/');
+      expect(page.url()).toBe('/');
     }
   });
 });
 
 test.describe('Multiplayer - Room Creation and Listing', () => {
   test('should load multiplayer page successfully', async ({ page }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Check page loaded
     await expect(page).toHaveTitle(/TypeFast/);
@@ -101,7 +101,7 @@ test.describe('Multiplayer - Room Creation and Listing', () => {
   });
 
   test('should display multiplayer interface elements', async ({ page }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     await page.waitForLoadState('networkidle');
 
@@ -116,7 +116,7 @@ test.describe('Multiplayer - Room Creation and Listing', () => {
   });
 
   test('should allow viewing public rooms', async ({ page }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     await page.waitForLoadState('networkidle');
 
@@ -132,7 +132,7 @@ test.describe('Multiplayer - Room Creation and Listing', () => {
   });
 
   test('should display create room button', async ({ page }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Look for create room button
     const createButton = page
@@ -148,7 +148,7 @@ test.describe('Multiplayer - Room Creation and Listing', () => {
   });
 
   test('should display join room input', async ({ page }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Look for room code input
     const codeInput = page.locator(
@@ -175,7 +175,7 @@ test.describe('Multiplayer - WebSocket Connectivity', () => {
       wsConnected = true;
     });
 
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Visit multiplayer page which might trigger WebSocket
     await page.waitForTimeout(2000);
@@ -187,7 +187,7 @@ test.describe('Multiplayer - WebSocket Connectivity', () => {
   test('should handle WebSocket disconnection gracefully', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Page should remain usable even if WebSocket fails
     const mainContent = page.locator('main');
@@ -203,10 +203,10 @@ test.describe('Multiplayer - Room Navigation and Interaction', () => {
   test('should navigate to room page if room code is provided', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/multiplayer');
+    await page.goto('/multiplayer');
 
     // Try navigating to a room with dummy code
-    await page.goto('http://localhost:3000/multiplayer/room/TEST123');
+    await page.goto('/multiplayer/room/TEST123');
 
     // Should load room page or show error gracefully
     await page.waitForLoadState('networkidle');
@@ -218,7 +218,7 @@ test.describe('Multiplayer - Room Navigation and Interaction', () => {
     page,
   }) => {
     // Navigate to a potential room page
-    await page.goto('http://localhost:3000/multiplayer/room/TESTCODE');
+    await page.goto('/multiplayer/room/TESTCODE');
 
     await page.waitForTimeout(2000);
 
@@ -230,7 +230,7 @@ test.describe('Multiplayer - Room Navigation and Interaction', () => {
   test('should handle invalid room codes gracefully', async ({ page }) => {
     // Try accessing room with invalid code
     const response = await page.goto(
-      'http://localhost:3000/multiplayer/room/INVALID'
+      '/multiplayer/room/INVALID'
     );
 
     await page.waitForTimeout(1000);
@@ -252,8 +252,8 @@ test.describe('Multiplayer - Multi-Browser Session', () => {
     const page2 = await context2.newPage();
 
     // Both load multiplayer page
-    await page1.goto('http://localhost:3000/multiplayer');
-    await page2.goto('http://localhost:3000/multiplayer');
+    await page1.goto('/multiplayer');
+    await page2.goto('/multiplayer');
 
     // Wait for pages to load
     await page1.waitForLoadState('networkidle');
@@ -267,3 +267,5 @@ test.describe('Multiplayer - Multi-Browser Session', () => {
     await context2.close();
   });
 });
+
+

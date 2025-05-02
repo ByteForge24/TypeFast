@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 test.describe('CTA Button Diagnostic', () => {
   test('direct navigation to /type works', async ({ page }) => {
     // Test 1: Can we navigate to /type directly?
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
     console.log('URL after navigation:', page.url());
     
     await expect(page).toHaveTitle(/TypeFast/);
@@ -17,7 +17,7 @@ test.describe('CTA Button Diagnostic', () => {
 
   test('CTA button exists and is clickable', async ({ page }) => {
     // Test 2: Does the CTA button exist?
-    await page.goto('http://localhost:3000');
+    await page.goto('');
     
     const ctaLink = page.locator('a[href="/type"]').first();
     console.log('CTA Link found:', await ctaLink.count());
@@ -37,7 +37,7 @@ test.describe('CTA Button Diagnostic', () => {
 
   test('CTA click triggers navigation event', async ({ page }) => {
     // Test 3: Does clicking actually trigger navigation?
-    await page.goto('http://localhost:3000');
+    await page.goto('');
     
     const ctaLink = page.locator('a[href="/type"]').first();
     await expect(ctaLink).toBeVisible();
@@ -69,7 +69,7 @@ test.describe('CTA Button Diagnostic', () => {
       urlChanges.push(frame.url());
     });
     
-    await page.goto('http://localhost:3000');
+    await page.goto('');
     console.log('Starting URL:', page.url());
     
     const ctaLink = page.locator('a[href="/type"]').first();
@@ -84,3 +84,5 @@ test.describe('CTA Button Diagnostic', () => {
     console.log('Final URL:', page.url());
   });
 });
+
+

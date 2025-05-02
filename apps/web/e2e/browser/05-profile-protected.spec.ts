@@ -10,7 +10,7 @@ test.describe('Profile Page - Authentication', () => {
     page,
   }) => {
     // Unauthenticated access
-    await page.goto('http://localhost:3000/profile', { waitUntil: 'domcontentloaded' });
+    await page.goto('/profile', { waitUntil: 'domcontentloaded' });
 
     // Either on auth page or redirected
     const url = page.url();
@@ -21,7 +21,7 @@ test.describe('Profile Page - Authentication', () => {
     authenticatedPage,
   }) => {
     // Should be authenticated already from fixture
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Check page loaded
     await expect(authenticatedPage).toHaveTitle(/TypeFast/);
@@ -34,7 +34,7 @@ test.describe('Profile Page - Authentication', () => {
   test('should display user information on profile page', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     await authenticatedPage.waitForLoadState('networkidle');
 
@@ -50,7 +50,7 @@ test.describe('Profile Page - Authentication', () => {
   test('should display user statistics on profile', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     await authenticatedPage.waitForLoadState('networkidle');
 
@@ -66,7 +66,7 @@ test.describe('Profile Page - Authentication', () => {
 
 test.describe('Profile Page - Content Display', () => {
   test('should display total tests taken', async ({ authenticatedPage }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     const content = await authenticatedPage
       .locator('body')
@@ -77,7 +77,7 @@ test.describe('Profile Page - Content Display', () => {
   });
 
   test('should display best score/WPM', async ({ authenticatedPage }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     const content = await authenticatedPage
       .locator('body')
@@ -88,7 +88,7 @@ test.describe('Profile Page - Content Display', () => {
   });
 
   test('should display average WPM', async ({ authenticatedPage }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     const content = await authenticatedPage
       .locator('body')
@@ -99,7 +99,7 @@ test.describe('Profile Page - Content Display', () => {
   });
 
   test('should display test history', async ({ authenticatedPage }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for history table or list
     const table = authenticatedPage.locator('table, [role="table"]');
@@ -116,7 +116,7 @@ test.describe('Profile Page - Content Display', () => {
   test('should show recent performance metrics', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     const content = await authenticatedPage
       .locator('body')
@@ -126,7 +126,7 @@ test.describe('Profile Page - Content Display', () => {
   });
 
   test('should display user avatar if set', async ({ authenticatedPage }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for avatar image
     const avatar = authenticatedPage.locator('img[alt*="avatar"]').first();
@@ -144,7 +144,7 @@ test.describe('Profile Page - Interaction', () => {
   test('should allow editing profile information', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for edit button or editable fields
     const editButton = authenticatedPage
@@ -162,7 +162,7 @@ test.describe('Profile Page - Interaction', () => {
   test('should have logout option on profile page', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for logout button
     const logoutButton = authenticatedPage
@@ -180,7 +180,7 @@ test.describe('Profile Page - Interaction', () => {
   test('should navigate to other pages from profile', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for navigation links
     const navLinks = authenticatedPage.locator('a[href*="/type"]');
@@ -196,7 +196,7 @@ test.describe('Profile Page - Interaction', () => {
   test('should handle pagination of test history if present', async ({
     authenticatedPage,
   }) => {
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     // Look for pagination buttons
     const paginationButtons = authenticatedPage
@@ -221,7 +221,7 @@ test.describe('Profile Page - Error Handling', () => {
     await createTestUser(testUser.email, testUser.password, testUser.name);
 
     // Login
-    await page.goto('http://localhost:3000/auth');
+    await page.goto('/auth');
     await page.fill('input[name="email"]', testUser.email);
     await page.fill('input[name="password"]', testUser.password);
 
@@ -235,7 +235,7 @@ test.describe('Profile Page - Error Handling', () => {
     });
 
     // Navigate to profile
-    await page.goto('http://localhost:3000/profile');
+    await page.goto('/profile');
 
     // Should show content (even if error, should be handled)
     await page.waitForLoadState('networkidle');
@@ -248,7 +248,7 @@ test.describe('Profile Page - Error Handling', () => {
     authenticatedPage,
   }) => {
     // Profile should load even if user has no test data
-    await authenticatedPage.goto('http://localhost:3000/profile');
+    await authenticatedPage.goto('/profile');
 
     const content = await authenticatedPage
       .locator('body')
@@ -261,7 +261,7 @@ test.describe('Profile Page - Error Handling', () => {
     page,
   }) => {
     // Without auth, accessing profile should redirect or show error
-    await page.goto('http://localhost:3000/profile');
+    await page.goto('/profile');
 
     await page.waitForTimeout(2000);
 
@@ -288,7 +288,7 @@ test.describe('Multiple Users - Profile Isolation', () => {
       const context1 = await browser!.newContext();
       const page1 = await context1.newPage();
 
-      await page1.goto('http://localhost:3000/auth');
+      await page1.goto('/auth');
       await page1.fill('input[name="email"]', user1.email);
       await page1.fill('input[name="password"]', user1.password);
 
@@ -303,7 +303,7 @@ test.describe('Multiple Users - Profile Isolation', () => {
       const context2 = await browser!.newContext();
       const page2 = await context2.newPage();
 
-      await page2.goto('http://localhost:3000/auth');
+      await page2.goto('/auth');
       await page2.fill('input[name="email"]', user2.email);
       await page2.fill('input[name="password"]', user2.password);
 
@@ -315,8 +315,8 @@ test.describe('Multiple Users - Profile Isolation', () => {
       });
 
       // Visit profile in both contexts
-      await page1.goto('http://localhost:3000/profile');
-      await page2.goto('http://localhost:3000/profile');
+      await page1.goto('/profile');
+      await page2.goto('/profile');
 
       // Both should load successfully
       const content1 = await page1.locator('body').textContent();
@@ -330,3 +330,5 @@ test.describe('Multiple Users - Profile Isolation', () => {
     }
   );
 });
+
+
