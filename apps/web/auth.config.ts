@@ -22,14 +22,35 @@ const authConfig = {
             email: credentials?.email,
             password: credentials?.password,
           });
-          if (!validation.success) return null;
+          if (!validation.success) {
+            console.log("[AUTH] Validation failed");
+            return null;
+          }
 
           const { email, password } = validation.data;
-          const user = await getUserByEmail(email);
+          console.log("[AUTH] Looking for user:", email);
           
-          if (!user?.password) return null;
-          if (!(await bcrypt.compare(password, user.password))) return null;
+          const user = await getUserByEmail(email);
+          console.log("[AUTH] User found:", !!user, "has password:", !!user?.password);
+          
+          if (!user) {
+            console.log("[AUTH] User not found");
+            return null;
+          }
+          
+          if (!user.password) {
+            console.log("[AUTH] User has no password");
+            return null;
+          }
+          
+          const isPasswordValid = await bcrypt.compare(password, user.password);
+          console.log("[AUTH] Password valid:", isPasswordValid);
+          
+          if (!isPasswordValid) {
+            return null;
+          }
 
+          console.log("[AUTH] Authorization successful for:", email);
           return {
             id: user.id,
             email: user.email,
