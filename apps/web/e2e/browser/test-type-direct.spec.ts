@@ -4,7 +4,7 @@ test('Direct navigation to /type page', async ({ page }) => {
   console.log('Starting test...');
   
   // Navigate directly to /type
-  await page.goto('http://localhost:3000/type');
+  await page.goto('/type');
   console.log('Navigated to /type');
   console.log('Current URL:', page.url());
   
@@ -18,3 +18,5 @@ test('Direct navigation to /type page', async ({ page }) => {
   
   expect(url).toContain('/type');
 });
+
+

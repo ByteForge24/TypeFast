@@ -10,7 +10,7 @@ test.describe('User Profile Flow', () => {
     // Should redirect to auth if not authenticated
     expect(
       url.includes('/auth') ||
-      url === 'http://localhost:3000/' ||
+      url === '/' ||
       url.includes('/profile')
     ).toBeTruthy();
   });
@@ -27,7 +27,7 @@ test.describe('User Profile Flow', () => {
       url.includes('/auth') ||
       content.includes('sign') ||
       content.includes('login') ||
-      url === 'http://localhost:3000/'
+      url === '/'
     ).toBeTruthy();
   });
 
@@ -125,7 +125,7 @@ test.describe('Error Handling and Redirects', () => {
     
     // Should redirect or show error
     expect(
-      url === 'http://localhost:3000/' ||
+      url === '/' ||
       content.includes('404') ||
       content.includes('not found')
     ).toBeTruthy();
@@ -150,7 +150,7 @@ test.describe('Error Handling and Redirects', () => {
     page.setDefaultTimeout(100);
     
     try {
-      await page.goto('http://localhost:3000/').catch(() => {});
+      await page.goto('/').catch(() => {});
     } catch (e) {
       // Expected if timeout
     }
@@ -186,3 +186,5 @@ test.describe('Error Handling and Redirects', () => {
     }
   });
 });
+
+

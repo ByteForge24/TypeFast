@@ -7,7 +7,7 @@ import { test, expect } from './fixtures';
 
 test.describe('Typing Interface and Modes', () => {
   test('should load typing page successfully', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Check page loaded
     await expect(page).toHaveTitle(/TypeFast/);
@@ -18,7 +18,7 @@ test.describe('Typing Interface and Modes', () => {
   });
 
   test('should display typing test interface components', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Wait for interface to load
     await page.waitForLoadState('networkidle');
@@ -33,7 +33,7 @@ test.describe('Typing Interface and Modes', () => {
   });
 
   test('should allow switching between typing modes', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Look for mode selector buttons/tabs
     const modeButtons = page.locator('button').filter({
@@ -55,7 +55,7 @@ test.describe('Typing Interface and Modes', () => {
   });
 
   test('should display performance metrics', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     await page.waitForLoadState('networkidle');
 
@@ -73,7 +73,7 @@ test.describe('Typing Interface and Modes', () => {
   });
 
   test('should display text to type', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     await page.waitForLoadState('networkidle');
 
@@ -90,7 +90,7 @@ test.describe('Typing Interface and Modes', () => {
 
 test.describe('Typing Interaction and Input', () => {
   test('should accept keyboard input in typing field', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Find input field
     let input = page.locator('textarea, input[type="text"]').first();
@@ -113,7 +113,7 @@ test.describe('Typing Interaction and Input', () => {
   });
 
   test('should start and display typing test', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     await page.waitForLoadState('networkidle');
 
@@ -133,7 +133,7 @@ test.describe('Typing Interaction and Input', () => {
   });
 
   test('should track typing stats in real-time', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Wait for page to fully load
     await page.waitForLoadState('networkidle');
@@ -146,7 +146,7 @@ test.describe('Typing Interaction and Input', () => {
   test('should show result screen after test completion', async ({
     page,
   }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     await page.waitForLoadState('networkidle');
 
@@ -175,7 +175,7 @@ test.describe('Typing Interaction and Input', () => {
   });
 
   test('should allow retaking the test', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Complete a quick run
     await page.waitForLoadState('networkidle');
@@ -209,7 +209,7 @@ test.describe('Typing Interaction and Input', () => {
 
 test.describe('Typing Mode Options', () => {
   test('should support time-based mode', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Look for time mode selector - button with text "time"
     const timeMode = page.locator('button:has-text("time")').first();
@@ -225,7 +225,7 @@ test.describe('Typing Mode Options', () => {
   });
 
   test('should support word count mode', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Look for word mode selector - button with text "words"
     const wordMode = page.locator('button:has-text("words")').first();
@@ -241,7 +241,7 @@ test.describe('Typing Mode Options', () => {
   });
 
   test('should support quote mode', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Look for quote mode
     const quoteMode = page.locator('button:has-text("Quote")').first();
@@ -259,7 +259,7 @@ test.describe('Typing Mode Options', () => {
 
 test.describe('Typing Error Handling', () => {
   test('should handle browser back button gracefully', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Start a test
     const startButton = page.locator('button:has-text("Start")').first();
@@ -279,7 +279,7 @@ test.describe('Typing Error Handling', () => {
   });
 
   test('should persist state appropriately', async ({ page }) => {
-    await page.goto('http://localhost:3000/type');
+    await page.goto('/type');
 
     // Interface should load and be usable
     await page.waitForLoadState('networkidle');
@@ -290,3 +290,5 @@ test.describe('Typing Error Handling', () => {
     expect(page.url()).toContain('/type');
   });
 });
+
+
