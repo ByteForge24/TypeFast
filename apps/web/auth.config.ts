@@ -17,43 +17,29 @@ const authConfig = {
     }),
     Credentials({
       async authorize(credentials) {
-        // Extract only email and password from credentials
-        const validation = signInSchema.safeParse({
-          email: credentials?.email,
-          password: credentials?.password,
-        });
-        if (!validation.success) {
-          console.error("[AUTH] Validation failed:", validation.error);
-          return null;
-        }
+        try {
+          const validation = signInSchema.safeParse({
+            email: credentials?.email,
+            password: credentials?.password,
+          });
+          if (!validation.success) return null;
 
-        const { email, password } = validation.data;
-        console.log("[AUTH] Attempting to authorize user:", email);
-        
-        const user = await getUserByEmail(email);
-        if (!user) {
-          console.error("[AUTH] User not found:", email);
-          return null;
-        }
-        if (!user.password) {
-          console.error("[AUTH] User has no password:", email);
-          return null;
-        }
+          const { email, password } = validation.data;
+          const user = await getUserByEmail(email);
+          
+          if (!user?.password) return null;
+          if (!(await bcrypt.compare(password, user.password))) return null;
 
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-          console.error("[AUTH] Password mismatch for:", email);
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+          };
+        } catch (error) {
+          console.error("[AUTH] Authorize error:", error);
           return null;
         }
-
-        console.log("[AUTH] Authorization successful for:", email);
-        // Return user object - email verification happens at session level
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          image: user.image,
-        };
       },
     }),
   ],

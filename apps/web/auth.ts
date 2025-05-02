@@ -30,9 +30,7 @@ async function getAuthInstance() {
         return token;
       },
       async signIn({ account, profile, user }) {
-        // authorize() callback already validated credentials
-        // Just allow the signin to proceed (both credentials and oauth)
-        console.log("[AUTH callback] signIn called - account:", account?.provider, "user:", user?.email);
+        // Allow both credentials and oauth providers
         return true;
       },
       async session({ session, token }) {
