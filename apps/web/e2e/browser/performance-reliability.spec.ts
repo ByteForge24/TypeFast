@@ -78,20 +78,6 @@ test.describe('Performance and Reliability', () => {
 
     expect(true).toBeTruthy();
   });
-    
-    // Simulate multiple interactions
-    const promises = [];
-    
-    promises.push(page.goto('/auth').catch(() => {}));
-    await page.waitForTimeout(100);
-    promises.push(page.goto('/leaderboard').catch(() => {}));
-    await page.waitForTimeout(100);
-    
-    await Promise.all(promises);
-    
-    const content = await page.content();
-    expect(content.length).toBeGreaterThan(50);
-  });
 
   test('Page handles rapid navigation', async ({ page }) => {
     const pages = ['/', '/auth', '/leaderboard'];
