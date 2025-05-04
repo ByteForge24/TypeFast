@@ -1,0 +1,122 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+  - main [ref=e32]:
+    - generic [ref=e34]:
+      - heading "Master Your Typing Skills with TypeFast" [level=1] [ref=e35]:
+        - text: Master Your Typing Skills
+        - text: with TypeFast
+      - paragraph [ref=e36]: Practice typing, challenge friends, and track improvements with real-time stats in a sleek, minimalist interface.
+      - link "Start Typing Now" [ref=e38] [cursor=pointer]:
+        - /url: /type
+        - text: Start Typing Now
+        - img
+    - generic [ref=e39]:
+      - heading "Why Choose TypeFast?" [level=2] [ref=e40]
+      - generic [ref=e41]:
+        - generic [ref=e43]:
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - generic [ref=e48]: Real-time Feedback
+          - generic [ref=e50]: Get instant feedback of your typing speed, and accuracy.
+        - generic [ref=e52]:
+          - generic [ref=e54]:
+            - img [ref=e55]
+            - generic [ref=e64]: Challenge Friends
+          - generic [ref=e66]: Compete with friends in real-time typing races.
+        - generic [ref=e68]:
+          - generic [ref=e70]:
+            - img [ref=e71]
+            - generic [ref=e73]: Detailed Statistics
+          - generic [ref=e75]: Track progress over time with comprehensive stats.
+        - generic [ref=e77]:
+          - generic [ref=e79]:
+            - img [ref=e80]
+            - generic [ref=e83]: Customizable Options
+          - generic [ref=e85]: Choose from different typing modes to suit your needs.
+        - generic [ref=e87]:
+          - generic [ref=e89]:
+            - img [ref=e90]
+            - generic [ref=e92]: Minimalist Interface
+          - generic [ref=e94]: Enjoy a sleek design that enhances your focus.
+    - generic [ref=e96]:
+      - heading "TypeFast by Numbers" [level=2] [ref=e97]
+      - generic [ref=e98]:
+        - generic [ref=e100]:
+          - generic [ref=e101]: 1247+
+          - generic [ref=e102]: Typist Registered
+        - generic [ref=e104]:
+          - generic [ref=e105]: 8934+
+          - generic [ref=e106]: Races Completed
+    - generic [ref=e108]:
+      - heading "Ready to Become a Typing Pro?" [level=2] [ref=e109]
+      - paragraph [ref=e110]: Join thousands of users who have improved their typing speed and accuracy with TypeFast.
+      - link "Get Started for Free" [ref=e112] [cursor=pointer]:
+        - /url: /type
+        - text: Get Started for Free
+        - img
+    - generic [ref=e114]:
+      - heading "What Our Users Say" [level=2] [ref=e115]
+      - generic [ref=e116]:
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e122]: S
+            - generic [ref=e123]:
+              - generic [ref=e124]: Sarah L.
+              - img [ref=e125]
+            - generic [ref=e128]: "@sarah_l"
+          - generic [ref=e129]: TypeFast has dramatically improved my typing speed. I've gone from 40 WPM to over 80 WPM in just a month!
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e135]: M
+            - generic [ref=e136]:
+              - generic [ref=e137]: Michael R.
+              - img [ref=e138]
+            - generic [ref=e141]: "@michael_r"
+          - generic [ref=e142]: The real-time feedback and analytics have been crucial in identifying and correcting my typing mistakes.
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e148]: E
+            - generic [ref=e149]:
+              - generic [ref=e150]: Emily T.
+              - img [ref=e151]
+            - generic [ref=e154]: "@emily_t"
+          - generic [ref=e155]: Challenging friends has made practicing typing so much more fun and engaging. I look forward to it every day!
+    - generic [ref=e158]:
+      - generic [ref=e159]:
+        - link "TypeFast" [ref=e160] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=e161]: © 2026 TypeFast. All rights reserved.
+      - navigation [ref=e162]:
+        - link "Privacy Policy" [ref=e163] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms of Service" [ref=e164] [cursor=pointer]:
+          - /url: "#"
+        - link "Contact Us" [ref=e165] [cursor=pointer]:
+          - /url: "#"
+  - region "Notifications alt+T"
+  - alert [ref=e166]
+```
