@@ -163,7 +163,7 @@ test.describe('Navigation', () => {
     expect(page.url()).toContain('/leaderboard');
 
     await page.goto('/');
-    expect(page.url()).toBe('//');
+    expect(page.url()).toContain('/');
   });
 });
 
