@@ -3,7 +3,7 @@
  * Tests leaderboard display and multiplayer race features
  */
 
-import { test, expect, authenticatedPage } from './fixtures';
+import { test, expect } from './fixtures';
 
 test.describe('Leaderboard Page', () => {
   test('should load leaderboard page successfully', async ({ page }) => {
