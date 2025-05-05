@@ -248,18 +248,10 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
 
   test('should establish WebSocket connection to live deployment', async ({
     page,
-    context,
   }) => {
     let wsConnected = false;
-    let wsErrored = false;
 
-    // Monitor WebSocket activity
-    context.on('*', (event) => {
-      if (event.toString().includes('websocket')) {
-        wsConnected = true;
-      }
-    });
-
+    // Monitor WebSocket activity via console messages
     page.on('console', (msg) => {
       if (msg.text().toLowerCase().includes('websocket')) {
         wsConnected = true;
