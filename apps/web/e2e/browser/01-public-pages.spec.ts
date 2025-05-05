@@ -79,7 +79,8 @@ test.describe('Landing Page', () => {
 
       // Verify navigation happened
       await page.waitForTimeout(500);
-      expect(page.url()).not.toEqual('http://localhost/') || expect(page.url()).toContain('type');
+      const currentUrl = page.url();
+      expect(currentUrl.includes('type') || !currentUrl.includes('localhost')).toBe(true);
     }
 
     // Test passes if we got here
