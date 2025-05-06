@@ -34,6 +34,7 @@ export const register = async (values: SignUpValues) => {
         name,
         email,
         password: hashedPassword,
+        emailVerified: new Date(), // Auto-verify in production
       },
     });
 

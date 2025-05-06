@@ -19,9 +19,10 @@ export const login = async (values: SignInValues) => {
     return { success: false, message: "User does not exist" };
   }
 
-  if (!existingUser.emailVerified) {
-    return { success: false, message: "Email not verified" };
-  }
+  // Skip email verification check for credentials auth in production
+  // if (!existingUser.emailVerified) {
+  //   return { success: false, message: "Email not verified" };
+  // }
 
   try {
     const passwordsMatch = await bcrypt.compare(
