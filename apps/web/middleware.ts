@@ -31,8 +31,8 @@ export async function middleware(req: NextRequest) {
   // Match /auth and all /auth/* subpaths (e.g. /auth/verification, /auth/error)
   const isAuthRoute = pathname.startsWith("/auth");
 
-  // Allow auth API routes
-  if (isApiAuthRoute) {
+  // Allow auth API routes - CRITICAL: bypass all middleware checks for auth APIs
+  if (isApiAuthRoute || pathname.startsWith("/api/room")) {
     return NextResponse.next();
   }
 

@@ -1,5 +1,6 @@
 import { handlers as getHandlers } from "@/auth";
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic"; // Ensure handlers always execute
 
 let cachedHandlers: any = null;
 
