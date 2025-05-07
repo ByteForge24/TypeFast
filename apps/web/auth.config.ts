@@ -14,6 +14,16 @@ const authConfig = {
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+      profile(profile) {
+        // Ensure OAuth users are immediately verified
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          emailVerified: new Date(), // Auto-verify OAuth accounts
+        };
+      },
     }),
     Credentials({
       async authorize(credentials) {
