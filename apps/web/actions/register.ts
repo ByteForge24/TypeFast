@@ -22,21 +22,35 @@ export const register = async (values: SignUpValues) => {
     const { name, email, password } = validation.data;
 
     const existingUser = await getUserByEmail(email);
-
-    if (existingUser) {
-      return { success: false, message: "User with this email already exists" };
-    }
-
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        emailVerified: new Date(), // Auto-verify in production
-      },
-    });
+    if (existingUser) {
+      // Link credentials to existing OAuth account
+      if (!existingUser.password) {
+        // User came from OAuth, now adding credentials
+        await prisma.user.update({
+          where: { email },
+          data: {
+            password: hashedPassword,
+            name: name || existingUser.name, // Keep OAuth name if not provided
+            emailVerified: new Date(),
+          },
+        });
+      } else {
+        // User already has credentials
+        return { success: false, message: "User with this email already exists" };
+      }
+    } else {
+      // Create new user
+      await prisma.user.create({
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+          emailVerified: new Date(), // Auto-verify in production
+        },
+      });
+    }
 
     const verificationToken = await generateVerificationToken(email);
     await sendVerificationEmail(verificationToken.email, verificationToken.token);
