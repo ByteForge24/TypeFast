@@ -4,6 +4,8 @@ import { generateRoomCode } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../DB_prisma/src/index";
 
+export const dynamic = "force-dynamic";
+
 export const POST = async (request: NextRequest) => {
   try {
     console.log("[POST /api/room] Creating new room...");
