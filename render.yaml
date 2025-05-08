@@ -16,7 +16,7 @@ services:
     name: typefast-web
     runtime: node
     plan: free
-    buildCommand: yarn install --production=false && yarn web:build
+    buildCommand: yarn install --production=false && cd apps/web && npx prisma migrate deploy && cd ../.. && yarn web:build
     startCommand: yarn start
     envVars:
       - key: NODE_ENV
