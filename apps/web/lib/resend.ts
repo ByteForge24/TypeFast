@@ -7,7 +7,7 @@ function getResendClient() {
     throw new Error("RESEND_API_KEY is not configured. Add it in your Render dashboard Environment variables.");
   }
   if (!frontendUrl) {
-    throw new Error("FRONTEND_URL is not configured. Set it to your production URL (e.g. https://typefast.onrender.com).");
+    throw new Error("FRONTEND_URL is not configured. Set it to your deployed frontend URL.");
   }
   return { resend: new Resend(apiKey), frontendUrl };
 }

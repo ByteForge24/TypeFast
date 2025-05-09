@@ -38,7 +38,7 @@ const SignUpForm = ({ callbackUrl }: SignUpFormProps) => {
   const [isPending, startTransition] = useTransition();
 
   const signUpForm = useForm<SignUpValues>({
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(signUpSchema as any),
     defaultValues: {
       name: "",
       email: "",

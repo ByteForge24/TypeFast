@@ -35,7 +35,7 @@ const CreateRoom = () => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<RoomValues>({
-    resolver: zodResolver(roomSchema),
+    resolver: zodResolver(roomSchema as any),
     defaultValues: {
       name: "",
       mode: "words",
@@ -57,8 +57,8 @@ const CreateRoom = () => {
         });
 
         console.log("[CreateRoom] Response status:", response.status);
-        
-        const responseData = await response.json();
+        const responseText = await response.text();
+        const responseData = responseText ? JSON.parse(responseText) : null;
         console.log("[CreateRoom] Response data:", responseData);
 
         if (!response.ok) {
@@ -81,7 +81,12 @@ const CreateRoom = () => {
         toast.success("Room created successfully!");
       } catch (error) {
         console.error("[CreateRoom] Network or parsing error:", error);
-        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
+        const errorMessage =
+          error instanceof SyntaxError
+            ? "Unexpected response from room service."
+            : error instanceof Error
+              ? error.message
+              : "An unexpected error occurred";
         toast.error(errorMessage);
       }
     });
