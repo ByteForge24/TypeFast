@@ -29,6 +29,7 @@ import { ResultProps } from "../../common/src/types";
 import { useEffect } from "react";
 import { addTest } from "@/actions/test";
 import StatCard from "../profile/stat-card";
+import { useSession } from "next-auth/react";
 
 const Result = ({
   wpm,
@@ -39,9 +40,12 @@ const Result = ({
   mode,
   modeOption,
 }: ResultProps) => {
+  const { status } = useSession();
+
   useEffect(() => {
     const saveTest = async () => {
       try {
+        if (status !== "authenticated") return;
         if (!wpm || !accuracy || !time || !mode || !modeOption) return;
         await addTest({
           wpm,
@@ -57,6 +61,7 @@ const Result = ({
 
     const addToLeaderboard = async () => {
       try {
+        if (status !== "authenticated") return;
         if (!wpm || !accuracy || !time || !mode || !modeOption) return;
         await fetch("/api/leaderboard", {
           method: "POST",
@@ -77,7 +82,7 @@ const Result = ({
 
     saveTest();
     addToLeaderboard();
-  });
+  }, [accuracy, mode, modeOption, status, time, wpm]);
 
   const averageWPM = Math.round(
     wpmData.reduce((sum, data) => sum + data.wpm, 0) / wpmData.length

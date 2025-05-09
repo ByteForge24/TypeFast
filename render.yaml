@@ -27,6 +27,8 @@ services:
         sync: true
       - key: NEXTAUTH_URL
         value: https://typefast-web-yogd.onrender.com
+      - key: FRONTEND_URL
+        value: https://typefast-web-yogd.onrender.com
       - key: NEXT_PUBLIC_WS_URL
         value: https://typefast-ws.onrender.com
       - key: GOOGLE_CLIENT_ID

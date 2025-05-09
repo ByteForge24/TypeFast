@@ -39,7 +39,7 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
   const [isPending, startTransition] = useTransition();
 
   const signInForm = useForm<SignInValues>({
-    resolver: zodResolver(signInSchema),
+    resolver: zodResolver(signInSchema as any),
     defaultValues: {
       email: "",
       password: "",
@@ -52,13 +52,21 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
         const result = await signIn("credentials", {
           email: values.email,
           password: values.password,
-          redirect: true,
+          redirect: false,
           callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
         });
 
         if (result?.error) {
           toast.error(result.error || "Sign in failed");
+          return;
         }
+
+        if (result?.ok) {
+          window.location.assign(callbackUrl || DEFAULT_LOGIN_REDIRECT);
+          return;
+        }
+
+        toast.error("Sign in failed");
       } catch (error) {
         console.error("Sign in error:", error);
         toast.error("An unexpected error occurred.");

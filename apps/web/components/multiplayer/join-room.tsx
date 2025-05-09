@@ -29,7 +29,7 @@ const JoinRoom = () => {
   const router = useRouter();
 
   const form = useForm<JoinRoomValues>({
-    resolver: zodResolver(joinRoomSchema),
+    resolver: zodResolver(joinRoomSchema as any),
     defaultValues: {
       code: "",
     },
@@ -41,7 +41,8 @@ const JoinRoom = () => {
         console.log("[JoinRoom] Attempting to join room with code:", data.code);
         
         const response = await fetch(`/api/room/${data.code}`);
-        const room = await response.json();
+        const responseText = await response.text();
+        const room = responseText ? JSON.parse(responseText) : null;
 
         console.log("[JoinRoom] Join response:", {
           status: response.status,
@@ -59,7 +60,12 @@ const JoinRoom = () => {
         }
       } catch (error) {
         console.error("[JoinRoom] Error joining room:", error);
-        const errorMessage = error instanceof Error ? error.message : "Something went wrong!";
+        const errorMessage =
+          error instanceof SyntaxError
+            ? "Unexpected response from room service."
+            : error instanceof Error
+              ? error.message
+              : "Something went wrong!";
         toast.error(errorMessage);
       }
     });

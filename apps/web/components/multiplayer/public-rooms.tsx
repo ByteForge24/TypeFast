@@ -19,7 +19,8 @@ const PublicRooms = ({ rooms }: PublicRoomsProps) => {
         console.log("[PublicRooms] Joining room with code:", roomCode);
         
         const response = await fetch(`/api/room/${roomCode}`);
-        const room = await response.json();
+        const responseText = await response.text();
+        const room = responseText ? JSON.parse(responseText) : null;
 
         console.log("[PublicRooms] Join response:", {
           status: response.status,
@@ -37,7 +38,12 @@ const PublicRooms = ({ rooms }: PublicRoomsProps) => {
         }
       } catch (error) {
         console.error("[PublicRooms] Error joining room:", error);
-        const errorMessage = error instanceof Error ? error.message : "Failed to join room";
+        const errorMessage =
+          error instanceof SyntaxError
+            ? "Unexpected response from room service."
+            : error instanceof Error
+              ? error.message
+              : "Failed to join room";
         toast.error(errorMessage);
       } finally {
         setRoomId(null);

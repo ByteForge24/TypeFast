@@ -10,14 +10,14 @@ try {
   process.chdir(path.join(__dirname, 'apps', 'web'));
   console.log('📁 Working directory: ' + process.cwd());
 
-  // Step 1: Generate Prisma Client
+  // Step 1: Generate Prisma Client using the app's schema-aware script
   console.log('📦 Step 1: Generating Prisma Client...');
-  execSync('npx prisma generate', { stdio: 'inherit' });
+  execSync('yarn db:generate', { stdio: 'inherit' });
   console.log('✅ Prisma Client generated');
 
-  // Step 2: Run migrations
+  // Step 2: Run migrations from the DB_prisma workspace path
   console.log('🗄️  Step 2: Running database migrations...');
-  execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+  execSync('yarn db:migrate', { stdio: 'inherit' });
   console.log('✅ Migrations completed');
 
   // Step 3: Start the app

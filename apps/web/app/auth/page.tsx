@@ -27,10 +27,10 @@ import SignUpForm from "@/components/auth/signup-form";
 const AUTH_ERROR_MESSAGES: Record<string, string> = {
   OAuthAccountNotLinked: "This email is already registered with a different sign-in method.",
   OAuthCallback: "Error during Google sign-in. Please try again.",
-  OAuthCallbackError: "Google sign-in failed. Check that GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are set, and add https://typefast.onrender.com/api/auth/callback/google to Authorized redirect URIs in Google Cloud Console.",
+  OAuthCallbackError: "Google sign-in failed. Check that your Google OAuth client ID, client secret, and authorized callback URL match this deployed app.",
   OAuthCreateAccount: "Could not create account. Please try again.",
   OAuthSignin: "Could not start Google sign-in. Check your Google OAuth configuration.",
-  CredentialsSignin: "Invalid email or password, or email not verified.",
+  CredentialsSignin: "Invalid email or password.",
   Default: "An authentication error occurred.",
 };
 
