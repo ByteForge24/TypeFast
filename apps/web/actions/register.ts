@@ -32,7 +32,7 @@ export const register = async (values: SignUpValues) => {
           where: { email },
           data: {
             password: hashedPassword,
-            name: name || existingUser.name, // Keep OAuth name if not provided
+            name: name || existingUser.name,
             emailVerified: new Date(),
           },
         });
@@ -52,10 +52,16 @@ export const register = async (values: SignUpValues) => {
       });
     }
 
-    const verificationToken = await generateVerificationToken(email);
-    await sendVerificationEmail(verificationToken.email, verificationToken.token);
-
-    return { success: true, message: "Confirmation email sent! Check your inbox." };
+    // Try to send verification email, but don't block account creation if it fails
+    try {
+      const verificationToken = await generateVerificationToken(email);
+      await sendVerificationEmail(verificationToken.email, verificationToken.token);
+      return { success: true, message: "Account created! Verification email sent." };
+    } catch (emailError) {
+      console.warn("[Register] Email send failed (non-blocking):", emailError);
+      // Account is created, email is optional for production
+      return { success: true, message: "Account created successfully! You can sign in now." };
+    }
   } catch (error) {
     console.error("Registration error:", error);
 
