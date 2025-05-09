@@ -17,7 +17,7 @@ services:
     runtime: node
     plan: free
     buildCommand: yarn install --production=false && yarn web:build
-    startCommand: cd apps/web && npx prisma migrate deploy && cd ../.. && yarn start
+    startCommand: node start-server.js
     envVars:
       - key: NODE_ENV
         value: production
