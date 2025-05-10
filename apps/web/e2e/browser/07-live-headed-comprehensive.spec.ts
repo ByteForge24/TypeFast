@@ -12,8 +12,11 @@ const testUser = {
 
 test.describe('TypeFast Live Production - Headed Mode Comprehensive Test Suite', () => {
   test.beforeEach(async ({ page }) => {
-    page.on('error', (error) => {
-      console.error('Page error:', error);
+    // Listen to console errors
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        console.error('Page console error:', msg.text());
+      }
     });
   });
 
