@@ -25,9 +25,7 @@ test.describe('Google OAuth Flow - Production', () => {
     await page.goto(`${LIVE_WEB_URL}/auth`, { waitUntil: 'networkidle' });
 
     // Look for Google OAuth button
-    const googleButton = page.locator(
-      'button:has-text("Google"), button:has-text("Sign in with Google"), [aria-label*="Google"]'
-    ).first();
+    const googleButton = page.getByRole('button', { name: /google/i }).or(page.locator('[aria-label*="Google"]')).first();
 
     const isVisible = await googleButton.isVisible({ timeout: 5000 }).catch(() => false);
     expect(isVisible).toBe(true);
@@ -39,9 +37,7 @@ test.describe('Google OAuth Flow - Production', () => {
     await page.goto(`${LIVE_WEB_URL}/auth`, { waitUntil: 'networkidle' });
 
     // Look for Google OAuth button
-    const googleButton = page.locator(
-      'button:has-text("Google"), button:has-text("Sign in with Google"), [aria-label*="Google"]'
-    ).first();
+    const googleButton = page.getByRole('button', { name: /google/i }).or(page.locator('[aria-label*="Google"]')).first();
 
     const isVisible = await googleButton.isVisible({ timeout: 5000 }).catch(() => false);
 
@@ -192,7 +188,7 @@ test.describe('Production Auth/Session Edge Cases', () => {
 
     if (isSignedIn) {
       // Try to find and click logout
-      const logoutButton = page.locator('button:has-text("Logout"), button:has-text("Sign out")').first();
+      const logoutButton = page.getByRole('button', { name: /logout|sign out/i }).first();
       const hasLogout = await logoutButton.isVisible({ timeout: 3000 }).catch(() => false);
 
       if (hasLogout) {
@@ -240,7 +236,7 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
     expect(page.url()).toContain('/multiplayer');
 
     // Look for room list or creation UI
-    const multiplayerContent = page.locator('main, section, div:has-text("room")').first();
+    const multiplayerContent = page.locator('main, section').or(page.getByText('room', { exact: false })).first();
     const isVisible = await multiplayerContent.isVisible({ timeout: 5000 }).catch(() => false);
 
     expect(typeof isVisible).toBe('boolean');
@@ -264,7 +260,7 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
     await page.waitForTimeout(2000);
 
     // Navigate to a page that should use WebSocket
-    const createRoomButton = page.locator('button:has-text("Create"), button:has-text("Join")').first();
+    const createRoomButton = page.getByRole('button', { name: /create|join/i }).first();
     const hasRoomButton = await createRoomButton.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (hasRoomButton) {
@@ -278,7 +274,7 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
     await page.goto(`${LIVE_WEB_URL}/multiplayer`, { waitUntil: 'networkidle' });
 
     // Look for create room button
-    const createButton = page.locator('button:has-text("Create")').first();
+    const createButton = page.getByRole('button', { name: 'Create' }).first();
     const isVisible = await createButton.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (isVisible) {
@@ -303,7 +299,7 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
     await page.goto(`${LIVE_WEB_URL}/multiplayer`, { waitUntil: 'networkidle' });
 
     // Create or join a room
-    const createButton = page.locator('button:has-text("Create")').first();
+    const createButton = page.getByRole('button', { name: 'Create' }).first();
     const canCreate = await createButton.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (canCreate) {
@@ -311,7 +307,7 @@ test.describe('Production Multiplayer Real-Time E2E', () => {
       await page.waitForTimeout(1500);
 
       // If we're in a room, look for race indicators
-      const raceUI = page.locator('button:has-text("Start"), div:has-text("WPM"), div:has-text("progress")').first();
+      const raceUI = page.getByRole('button', { name: 'Start' }).or(page.getByText('WPM')).or(page.getByText('progress')).first();
       const hasRaceUI = await raceUI.isVisible({ timeout: 3000 }).catch(() => false);
 
       expect(typeof hasRaceUI).toBe('boolean');

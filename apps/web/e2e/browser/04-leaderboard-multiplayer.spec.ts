@@ -62,7 +62,7 @@ test.describe('Leaderboard Page', () => {
     await page.goto('/leaderboard', { waitUntil: 'networkidle' });
 
     // Look for home/back link
-    const homeLink = page.locator('a:has-text("Home")').first();
+    const homeLink = page.getByRole('link', { name: 'Home' }).first();
 
     const isVisible = await homeLink.isVisible({ timeout: 5000 }).catch(() => false);
     

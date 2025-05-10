@@ -30,7 +30,7 @@ test('Render Deployment - Public Pages Accessible', async ({ page }) => {
   console.log('✓ Landing page accessible');
   
   // Test auth page
-  const authLink = page.locator('a:has-text("Sign In"), button:has-text("Sign In"), [href*="/auth"]').first();
+  const authLink = page.getByRole('link', { name: /sign in/i }).or(page.getByRole('button', { name: /sign in/i })).or(page.locator('[href*="/auth"]')).first();
   if (await authLink.isVisible({ timeout: 3000 }).catch(() => false)) {
     await authLink.click();
     await page.waitForURL('**/auth', { timeout: 5000 }).catch(() => {});

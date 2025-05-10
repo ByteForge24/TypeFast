@@ -144,7 +144,7 @@ test.describe('Profile Page - Interaction', () => {
 
     // Look for edit button or editable fields
     const editButton = authenticatedPage
-      .locator('button:has-text(/edit|change/i)')
+      .getByRole('button', { name: /edit|change/i })
       .first();
 
     const hasEditOption = await editButton
@@ -162,7 +162,7 @@ test.describe('Profile Page - Interaction', () => {
 
     // Look for logout button
     const logoutButton = authenticatedPage
-      .locator('button:has-text("Logout")')
+      .getByRole('button', { name: 'Logout' })
       .first();
 
     const hasLogout = await logoutButton
@@ -196,7 +196,7 @@ test.describe('Profile Page - Interaction', () => {
 
     // Look for pagination buttons
     const paginationButtons = authenticatedPage
-      .locator('button:has-text(/next|prev|page/i)')
+      .getByRole('button', { name: /next|prev|page/i })
       .first();
 
     const hasPagination = await paginationButtons

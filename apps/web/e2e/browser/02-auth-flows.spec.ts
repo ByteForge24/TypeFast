@@ -124,8 +124,8 @@ test.describe('Sign Up Flow', () => {
     await page.goto('/auth');
 
     // Look for sign-up toggle/tab
-    const signUpTab = page.locator('button:has-text("Sign up")').first();
-    const signUpMode = page.locator('a:has-text("Create")').first();
+    const signUpTab = page.getByRole('tab', { name: 'Sign up' }).or(page.getByRole('button', { name: 'Sign up' })).first();
+    const signUpMode = page.getByRole('link', { name: 'Create' }).first();
 
     const hasSignUpOption =
       (await signUpTab.isVisible().catch(() => false)) ||
@@ -153,13 +153,13 @@ test.describe('Sign Up Flow', () => {
     await page.goto('/auth');
 
     // Check for Google auth button
-    const googleButton = page.locator('button:has-text("Google")').first();
+    const googleButton = page.getByRole('button', { name: /google/i }).first();
 
     // Google button might be present (even if not fully functional locally)
     const hasGoogleAuth =
       (await googleButton.isVisible().catch(() => false)) ||
       (await page
-        .locator('a:has-text("Google")')
+        .getByRole('link', { name: /google/i })
         .isVisible()
         .catch(() => false));
 
@@ -177,9 +177,9 @@ test.describe('Logout Flow', () => {
 
     // Look for logout button/link
     const logoutButton = authenticatedPage
-      .locator('button:has-text("Logout")')
+      .getByRole('button', { name: 'Logout' })
       .first();
-    const logoutLink = authenticatedPage.locator('a:has-text("Logout")').first();
+    const logoutLink = authenticatedPage.getByRole('link', { name: 'Logout' }).first();
 
     const hasLogout = (await logoutButton.count().catch(() => 0) > 0) || (await logoutLink.count().catch(() => 0) > 0);
     
