@@ -99,7 +99,7 @@ test.describe('Typing Interaction and Input', () => {
     await page.waitForTimeout(1000);
 
     // Look for start button
-    const startButton = page.locator('button:has-text("Start")').first();
+    const startButton = page.getByRole('button', { name: 'Start' }).first();
 
     const isVisible = await startButton.isVisible({ timeout: 3000 }).catch(() => false);
     
@@ -130,14 +130,14 @@ test.describe('Typing Interaction and Input', () => {
     await page.waitForLoadState('networkidle');
 
     // Look for start button or test completion button
-    const startButton = page.locator('button:has-text("Start")').first();
+    const startButton = page.getByRole('button', { name: 'Start' }).first();
 
     const isVisible = await startButton.isVisible({ timeout: 3000 }).catch(() => false);
     if (isVisible) {
       await startButton.click().catch(() => {});
       await page.waitForTimeout(300);
 
-      const finishButton = page.locator('button:has-text("Finish")').first();
+      const finishButton = page.getByRole('button', { name: 'Finish' }).first();
       const finishVisible = await finishButton.isVisible({ timeout: 3000 }).catch(() => false);
 
       if (finishVisible) {
@@ -154,21 +154,21 @@ test.describe('Typing Interaction and Input', () => {
     await page.goto('/type', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
 
-    const startButton = page.locator('button:has-text("Start")').first();
+    const startButton = page.getByRole('button', { name: 'Start' }).first();
 
     const isVisible = await startButton.isVisible({ timeout: 3000 }).catch(() => false);
     if (isVisible) {
       await startButton.click().catch(() => {});
       await page.waitForTimeout(300);
 
-      const finishButton = page.locator('button:has-text("Finish")').first();
+      const finishButton = page.getByRole('button', { name: 'Finish' }).first();
       const finishVisible = await finishButton.isVisible({ timeout: 3000 }).catch(() => false);
 
       if (finishVisible) {
         await finishButton.click().catch(() => {});
         await page.waitForTimeout(500);
 
-        const retryButton = page.locator('button:has-text("Again")').first();
+        const retryButton = page.getByRole('button', { name: 'Again' }).first();
         const retryVisible = await retryButton.isVisible({ timeout: 3000 }).catch(() => false);
 
         if (retryVisible) {
@@ -186,7 +186,7 @@ test.describe('Typing Mode Options', () => {
     await page.goto('/type', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
 
-    const timeMode = page.locator('button:has-text("time")').first();
+    const timeMode = page.getByRole('button', { name: /time/i }).first();
     const isVisible = await timeMode.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (isVisible) {
@@ -201,7 +201,7 @@ test.describe('Typing Mode Options', () => {
     await page.goto('/type', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
 
-    const wordMode = page.locator('button:has-text("words")').first();
+    const wordMode = page.getByRole('button', { name: /words/i }).first();
     const isVisible = await wordMode.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (isVisible) {
@@ -216,7 +216,7 @@ test.describe('Typing Mode Options', () => {
     await page.goto('/type', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
 
-    const quoteMode = page.locator('button:has-text("Quote")').first();
+    const quoteMode = page.getByRole('button', { name: 'Quote' }).first();
     const isVisible = await quoteMode.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (isVisible) {
@@ -233,7 +233,7 @@ test.describe('Typing Error Handling', () => {
     await page.goto('/type', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
 
-    const startButton = page.locator('button:has-text("Start")').first();
+    const startButton = page.getByRole('button', { name: 'Start' }).first();
     const isVisible = await startButton.isVisible({ timeout: 3000 }).catch(() => false);
 
     if (isVisible) {

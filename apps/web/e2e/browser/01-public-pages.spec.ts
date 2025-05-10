@@ -146,7 +146,7 @@ test.describe('Navigation', () => {
     await page.waitForLoadState('networkidle');
 
     // Find and click Auth/Login link - looking for navigation link in header
-    const authLink = page.locator('nav a:has-text("Sign in")');
+    const authLink = page.locator('nav').getByRole('link', { name: /sign in/i });
     
     // Skip test if Sign in link is not visible (user might be logged in)
     if (await authLink.isVisible({ timeout: 5000 }).catch(() => false)) {
