@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -11,7 +12,7 @@ import {
   FormMessage,
 } from "../../ui/src/components/ui/form";
 import { Input } from "../../ui/src/components/ui/input";
-import { Mail, Lock, ArrowRight } from "lucide-react";
+import { Mail, Lock, ArrowRight, TriangleAlert } from "lucide-react";
 import { signInSchema, SignInValues } from "../../common/src/schemas";
 import { useTransition } from "react";
 import { toast } from "sonner";
@@ -37,6 +38,7 @@ const childVariants = {
 
 const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
   const signInForm = useForm<SignInValues>({
     resolver: zodResolver(signInSchema as any),
@@ -47,6 +49,7 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
   });
 
   const onSignIn = async (values: SignInValues) => {
+    setError(null);
     startTransition(async () => {
       try {
         const result = await signIn("credentials", {
@@ -57,25 +60,43 @@ const SignInForm = ({ callbackUrl = DEFAULT_LOGIN_REDIRECT }: SignInFormProps) =
         });
 
         if (result?.error) {
-          toast.error(result.error || "Sign in failed");
+          const errorMessage = result.error || "Sign in failed";
+          setError(errorMessage);
+          toast.error(errorMessage);
           return;
         }
 
         if (result?.ok) {
+          setError(null);
           window.location.assign(callbackUrl || DEFAULT_LOGIN_REDIRECT);
           return;
         }
 
-        toast.error("Sign in failed");
+        const errorMessage = "Sign in failed";
+        setError(errorMessage);
+        toast.error(errorMessage);
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
         console.error("Sign in error:", error);
-        toast.error("An unexpected error occurred.");
+        setError(errorMessage);
+        toast.error(errorMessage);
       }
     });
   };
 
   return (
     <Form {...signInForm}>
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 p-3 rounded-lg bg-destructive/15 text-destructive text-sm border border-destructive/30 mb-4"
+          role="alert"
+        >
+          <TriangleAlert className="size-4 shrink-0" />
+          <p>{error}</p>
+        </motion.div>
+      )}
       <form
         onSubmit={signInForm.handleSubmit(onSignIn)}
         className="space-y-4 text-neutral-200"
