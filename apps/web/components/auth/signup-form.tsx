@@ -1,4 +1,4 @@
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -12,10 +12,12 @@ import {
   FormMessage,
 } from "../../ui/src/components/ui/form";
 import { Input } from "../../ui/src/components/ui/input";
-import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, TriangleAlert } from "lucide-react";
 import { signUpSchema, SignUpValues } from "../../common/src/schemas";
 import { toast } from "sonner";
 import { register } from "@/actions/register";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/constants";
 
 const childVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -36,6 +38,7 @@ interface SignUpFormProps {
 
 const SignUpForm = ({ callbackUrl }: SignUpFormProps) => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
 
   const signUpForm = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema as any),
@@ -47,24 +50,58 @@ const SignUpForm = ({ callbackUrl }: SignUpFormProps) => {
   });
 
   const onSignUp = async (values: SignUpValues) => {
+    setError(null);
     startTransition(async () => {
       try {
         const result = await register(values);
 
         if (result.success) {
           toast.success(result.message);
+          setError(null);
+          
+          // Auto-signin after successful signup
+          try {
+            const signInResult = await signIn("credentials", {
+              email: values.email,
+              password: values.password,
+              redirect: false,
+              callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+            });
+            
+            if (signInResult?.ok) {
+              window.location.assign(callbackUrl || DEFAULT_LOGIN_REDIRECT);
+              return;
+            }
+          } catch (signInError) {
+            console.log("Auto signin after signup failed, user can signin manually:", signInError);
+          }
         } else {
-          toast.error(result.message);
+          const errorMessage = result.message || "Sign up failed";
+          setError(errorMessage);
+          toast.error(errorMessage);
         }
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
         console.error("Registration error:", error);
-        toast.error("An unexpected error occurred.");
+        setError(errorMessage);
+        toast.error(errorMessage);
       }
     });
   };
 
   return (
     <Form {...signUpForm}>
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 p-3 rounded-lg bg-destructive/15 text-destructive text-sm border border-destructive/30 mb-4"
+          role="alert"
+        >
+          <TriangleAlert className="size-4 shrink-0" />
+          <p>{error}</p>
+        </motion.div>
+      )}
       <form
         onSubmit={signUpForm.handleSubmit(onSignUp)}
         className="space-y-4 text-neutral-200"
