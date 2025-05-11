@@ -1,0 +1,62 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]: Welcome to TypeFast
+      - generic [ref=e37]: Sign in to your account or create a new one
+    - generic [ref=e39]:
+      - tablist [ref=e40]:
+        - tab "Sign In" [ref=e41] [cursor=pointer]
+        - tab "Sign Up" [selected] [ref=e42] [cursor=pointer]
+      - tabpanel "Sign Up" [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e46]:
+            - text: Name
+            - generic [ref=e47]:
+              - img [ref=e48]
+              - textbox "John Doe" [ref=e51]: Test User 1774164301581
+          - generic [ref=e53]:
+            - text: Email
+            - generic [ref=e54]:
+              - img [ref=e55]
+              - textbox "john@gmail.com" [ref=e58]: testuser+1774164301581-kcfwyb@typefast.test
+          - generic [ref=e60]:
+            - text: Password
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - textbox "●●●●●●●●" [active] [ref=e65]: SecurePass123!kcfwyb
+          - button "Sign Up" [ref=e66] [cursor=pointer]:
+            - text: Sign Up
+            - img
+    - button "Continue with Google" [ref=e68] [cursor=pointer]:
+      - img
+      - generic [ref=e69]: Continue with Google
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e75] [cursor=pointer]:
+    - img [ref=e76]
+  - alert [ref=e79]
+```

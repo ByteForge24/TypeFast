@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - banner [ref=e2]:
     - link "TypeFast" [ref=e3] [cursor=pointer]:
       - /url: /
@@ -38,27 +38,25 @@
             - text: Name
             - generic [ref=e47]:
               - img [ref=e48]
-              - textbox "John Doe" [ref=e51]: Test User
+              - textbox "John Doe" [ref=e51]: Test User 1774164356936
           - generic [ref=e53]:
             - text: Email
             - generic [ref=e54]:
               - img [ref=e55]
-              - textbox "john@gmail.com" [ref=e58]: test-1774157025367@example.com
+              - textbox "john@gmail.com" [ref=e58]: testuser+1774164356936-54eho9@typefast.test
           - generic [ref=e60]:
             - text: Password
             - generic [ref=e61]:
               - img [ref=e62]
-              - textbox "●●●●●●●●" [ref=e65]: TestPassword123!
+              - textbox "●●●●●●●●" [active] [ref=e65]: SecurePass123!54eho9
           - button "Sign Up" [ref=e66] [cursor=pointer]:
             - text: Sign Up
             - img
     - button "Continue with Google" [ref=e68] [cursor=pointer]:
       - img
       - generic [ref=e69]: Continue with Google
-  - region "Notifications alt+T":
-    - list:
-      - listitem [ref=e70]:
-        - img [ref=e72]
-        - generic [ref=e75]: "Invalid `prisma.user.create()` invocation: The table `public.User` does not exist in the current database."
-  - alert [ref=e76]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e75] [cursor=pointer]:
+    - img [ref=e76]
+  - alert [ref=e79]
 ```
