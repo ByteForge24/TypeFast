@@ -44,6 +44,23 @@ async function getAuthInstance() {
         }
         return session;
       },
+      async redirect({ url, baseUrl }) {
+        // Extract callbackUrl from the URL
+        const callbackUrl = new URL(url).searchParams.get('callbackUrl');
+        
+        // If there's a callback URL in the query params, redirect there
+        if (callbackUrl && callbackUrl.startsWith('/')) {
+          return `${baseUrl}${callbackUrl}`;
+        }
+        
+        // Otherwise use default redirect from signin flow
+        if (url.startsWith('/')) {
+          return `${baseUrl}${url}`;
+        }
+        
+        // Default fallback - redirect to /type
+        return `${baseUrl}/type`;
+      },
     },
     ...authConfig,
   });
