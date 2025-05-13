@@ -370,6 +370,9 @@ test.describe('Strict Typing Result Save Tests', () => {
     // Check leaderboard after test
     await page.goto(`${baseUrl}/leaderboard`, { waitUntil: 'networkidle' });
 
+    // Wait for leaderboard data to load and render
+    await page.waitForSelector('tbody tr, [data-testid="leaderboard-row"], .leaderboard-entry', { timeout: 10000 }).catch(() => null);
+
     const updatedContent = await page.content();
     const updatedLength = updatedContent.length;
 
@@ -385,11 +388,13 @@ test.describe('Strict Typing Result Save Tests', () => {
     expect(updatedLength).toBeGreaterThan(50);
 
     // 3. Should show leaderboard data (names, scores, etc)
+    // Check for score pattern (number dot number like 97.3, 123.45) or keywords
+    const scoreMatch = updatedContent.match(/\d+\.\d+/);
     const hasLeaderboardData =
       updatedContent.includes('rank') ||
       updatedContent.includes('wpm') ||
       updatedContent.includes('score') ||
-      updatedContent.match(/\d+\.\d+/) !== null; // Scores like 123.45
+      scoreMatch !== null;
     expect(hasLeaderboardData).toBe(true);
 
     // 4. No invalid JSON parsing errors
