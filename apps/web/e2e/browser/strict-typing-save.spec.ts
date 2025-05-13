@@ -389,7 +389,7 @@ test.describe('Strict Typing Result Save Tests', () => {
       updatedContent.includes('rank') ||
       updatedContent.includes('wpm') ||
       updatedContent.includes('score') ||
-      updatedContent.match(/\d+\.\d+/); // Scores like 123.45
+      updatedContent.match(/\d+\.\d+/) !== null; // Scores like 123.45
     expect(hasLeaderboardData).toBe(true);
 
     // 4. No invalid JSON parsing errors
