@@ -45,20 +45,30 @@ async function getAuthInstance() {
         return session;
       },
       async redirect({ url, baseUrl }) {
-        // Extract callbackUrl from the URL
-        const callbackUrl = new URL(url).searchParams.get('callbackUrl');
-        
-        // If there's a callback URL in the query params, redirect there
-        if (callbackUrl && callbackUrl.startsWith('/')) {
-          return `${baseUrl}${callbackUrl}`;
+        // Try to extract callbackUrl from the URL query params
+        try {
+          const parsedUrl = new URL(url, baseUrl);
+          const callbackUrl = parsedUrl.searchParams.get('callbackUrl');
+          
+          // If there's a callback URL in the query params, use it
+          if (callbackUrl && callbackUrl.startsWith('/')) {
+            return `${baseUrl}${callbackUrl}`;
+          }
+        } catch {
+          // Continue if URL parsing fails
         }
         
-        // Otherwise use default redirect from signin flow
+        // If url is a relative path, keep it
         if (url.startsWith('/')) {
           return `${baseUrl}${url}`;
         }
         
-        // Default fallback - redirect to /type
+        // If url is already absolute and valid, allow it
+        if (url.startsWith(baseUrl)) {
+          return url;
+        }
+        
+        // Default fallback - redirect to /type (the main app page)
         return `${baseUrl}/type`;
       },
     },
