@@ -1,7 +1,9 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "../../ui/src/components/ui/button";
 import {
@@ -49,11 +51,20 @@ const containerVariants = {
 
 const AuthPageContent = () => {
   const searchParams = useSearchParams();
+  const { data: session } = useSession();
+  const router = useRouter();
   const callbackUrl = searchParams.get("callbackUrl") ?? DEFAULT_LOGIN_REDIRECT;
   const errorParam = searchParams.get("error");
   const errorMessage = errorParam
     ? AUTH_ERROR_MESSAGES[errorParam] ?? AUTH_ERROR_MESSAGES.Default
     : null;
+
+  // Redirect authenticated users away from auth page
+  useEffect(() => {
+    if (session) {
+      router.push(callbackUrl);
+    }
+  }, [session, callbackUrl, router]);
 
   const handleClick = () => {
     signIn("google", { callbackUrl });
