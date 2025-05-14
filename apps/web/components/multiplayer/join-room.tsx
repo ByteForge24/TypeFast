@@ -1,8 +1,8 @@
 "use client";
 
-import { Loader2, LogIn } from "lucide-react";
+import { Loader2, LogIn, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -26,6 +26,7 @@ import { joinRoomSchema, JoinRoomValues } from "../../common/src/schemas";
 
 const JoinRoom = () => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const form = useForm<JoinRoomValues>({
@@ -36,6 +37,7 @@ const JoinRoom = () => {
   });
 
   const onSubmit = (data: JoinRoomValues) => {
+    setError(null);
     startTransition(async () => {
       try {
         console.log("[JoinRoom] Attempting to join room with code:", data.code);
@@ -52,8 +54,10 @@ const JoinRoom = () => {
         if (!response.ok) {
           const errorMessage = room?.error || "Room not found!";
           console.error("[JoinRoom] Failed to join room:", errorMessage);
+          setError(errorMessage);
           toast.error(errorMessage);
         } else {
+          setError(null);
           console.log("[JoinRoom] Successfully joined room, redirecting...");
           router.push(`/multiplayer/room/${data.code}`);
           toast.success("Joined room successfully!");
@@ -66,6 +70,7 @@ const JoinRoom = () => {
             : error instanceof Error
               ? error.message
               : "Something went wrong!";
+        setError(errorMessage);
         toast.error(errorMessage);
       }
     });
@@ -78,6 +83,19 @@ const JoinRoom = () => {
           <LogIn className="size-8 text-sky-400" />
           <span>Join Room</span>
         </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {error && (
+          <div
+            className="flex items-center gap-2 p-3 rounded-lg bg-destructive/15 text-destructive text-sm border border-destructive/30 mb-4"
+            role="alert"
+          >
+            <TriangleAlert className="size-4 shrink-0" />
+            <p>{error}</p>
+          </div>
+        )}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
       </CardHeader>
       <CardContent>
         <Form {...form}>
