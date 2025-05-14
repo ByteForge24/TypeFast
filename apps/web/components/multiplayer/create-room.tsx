@@ -1,9 +1,10 @@
 "use client";
 
-import { Loader2, Plus } from "lucide-react";
+import { Loader2, Plus, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Button } from "../../ui/src/components/ui/button";
 import {
   Card,
@@ -33,6 +34,7 @@ import { useTransition } from "react";
 
 const CreateRoom = () => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const form = useForm<RoomValues>({
     resolver: zodResolver(roomSchema as any),
@@ -44,6 +46,7 @@ const CreateRoom = () => {
   });
 
   const onSubmit = (data: RoomValues) => {
+    setError(null);
     startTransition(async () => {
       try {
         console.log("[CreateRoom] Submitting room creation with data:", data);
@@ -64,18 +67,23 @@ const CreateRoom = () => {
         if (!response.ok) {
           const errorMessage = responseData?.error || "Failed to create room";
           const details = responseData?.details ? ` (${responseData.details})` : "";
+          const fullError = errorMessage + details;
           console.error("[CreateRoom] Error response:", { error: errorMessage, details });
-          toast.error(errorMessage + details);
+          setError(fullError);
+          toast.error(fullError);
           return;
         }
 
         const room = responseData;
         if (!room.code) {
           console.error("[CreateRoom] Room response missing code:", room);
-          toast.error("Invalid room data received");
+          const errorMsg = "Invalid room data received";
+          setError(errorMsg);
+          toast.error(errorMsg);
           return;
         }
 
+        setError(null);
         console.log("[CreateRoom] Room created successfully, redirecting to:", room.code);
         router.push(`/multiplayer/room/${room.code}`);
         toast.success("Room created successfully!");
@@ -87,6 +95,7 @@ const CreateRoom = () => {
             : error instanceof Error
               ? error.message
               : "An unexpected error occurred";
+        setError(errorMessage);
         toast.error(errorMessage);
       }
     });
@@ -101,6 +110,15 @@ const CreateRoom = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
+        {error && (
+          <div
+            className="flex items-center gap-2 p-3 rounded-lg bg-destructive/15 text-destructive text-sm border border-destructive/30 mb-4"
+            role="alert"
+          >
+            <TriangleAlert className="size-4 shrink-0" />
+            <p>{error}</p>
+          </div>
+        )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
