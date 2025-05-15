@@ -1,4 +1,4 @@
-# TypeFast - Advanced Real-Time Multiplayer Typing Speed Test Platform
+# TypeFast - Real-Time Multiplayer Typing Platform
 
 ## 📋 Table of Contents
 1. [Executive Summary](#executive-summary)
