@@ -1,5 +1,34 @@
 # TypeFast - Advanced Real-Time Multiplayer Typing Speed Test Platform
 
+```mermaid
+graph LR
+    A["🌐 React 19<br/>Next.js 16.2"] -->|WebSocket| B["⚡ Real-Time<br/>Racing Engine"]
+    B -->|Broadcast| C["🏠 Multiplayer<br/>Rooms"]
+    C -->|Persist| D["🗄️ PostgreSQL 16<br/>Redis Cache"]
+    D -->|API| A
+    
+    style A fill:#61dafb,stroke:#333,color:#000
+    style B fill:#ff6b6b,stroke:#333,color:#fff
+    style C fill:#4ecdc4,stroke:#333,color:#fff
+    style D fill:#45b7d1,stroke:#333,color:#fff
+```
+
+---
+
+A **production-grade, real-time multiplayer typing speed test platform** built with modern web technologies. Users practice typing, compete in live races, track detailed statistics, and climb global leaderboards. Features **25 E2E tests**, OAuth authentication, WebSocket infrastructure, and Render deployment.
+
+[![Production](https://img.shields.io/badge/Status-Production%20Ready-green?style=flat-square&logo=checkmark)](https://typefast-web-yogd.onrender.com)
+[![Tests](https://img.shields.io/badge/Tests-9%2F25%20Passing-orange?style=flat-square&logo=playwright)](./QUICK_START_STRICT_TESTS.md)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](http://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)](https://react.dev)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js)](https://nextjs.org)
+
+**[LIVE DEMO](https://typefast-web-yogd.onrender.com)** • **[TEST REPORT](./QUICK_START_STRICT_TESTS.md)** • **[API DOCS](#api-architecture)** • **[DEPLOY GUIDE](./docs/DEPLOYMENT_SETUP.md)**
+
+**Tech**: React • Next.js • TypeScript • Tailwind • PostgreSQL • Redis • WebSocket • Playwright
+
+---
+
 ## 📋 Table of Contents
 1. [Executive Summary](#executive-summary)
 2. [System Architecture](#system-architecture)
