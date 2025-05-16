@@ -1,4 +1,4 @@
-# TypeFast - Advanced Real-Time Multiplayer Typing Speed Test Platform
+# TypeFast - Real-Time Multiplayer Typing Platform
 
 ```mermaid
 graph LR
