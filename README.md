@@ -14,8 +14,6 @@
 
 ---
 
----
-
 A **production-grade, real-time multiplayer typing speed test platform** built with modern web technologies. Users practice typing, compete in live races, track detailed statistics, and climb global leaderboards. Features **25 E2E tests**, OAuth authentication, WebSocket infrastructure, and Render deployment.
 
 [![Production](https://img.shields.io/badge/Status-Production%20Ready-green?style=flat-square&logo=checkmark)](https://typefast-web-yogd.onrender.com)
