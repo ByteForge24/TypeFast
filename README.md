@@ -1,17 +1,16 @@
 # TypeFast — Real-Time Multiplayer Typing Platform
 
-```mermaid
-graph LR
-    A["🌐 React 19<br/>Next.js 16.2"] -->|WebSocket| B["⚡ Real-Time<br/>Racing Engine"]
-    B -->|Broadcast| C["🏠 Multiplayer<br/>Rooms"]
-    C -->|Persist| D["🗄️ PostgreSQL 16<br/>Redis Cache"]
-    D -->|API| A
-    
-    style A fill:#61dafb,stroke:#333,color:#000
-    style B fill:#ff6b6b,stroke:#333,color:#fff
-    style C fill:#4ecdc4,stroke:#333,color:#fff
-    style D fill:#45b7d1,stroke:#333,color:#fff
-```
+<p align="center">
+  <a href="https://mindsphere-hub.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+  <a href="https://mindsphere-backend-9c0u.onrender.com/health"><img src="https://img.shields.io/badge/API-4351e8?style=for-the-badge&logo=render&logoColor=white" /></a>
+  <a href="https://github.com/ByteForge24/MindSphere/actions"><img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" /></a>
+</p>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,ts,vite,tailwind,nodejs,express,mongodb,docker&theme=dark" />
+</p>
+
+---
 
 ---
 
