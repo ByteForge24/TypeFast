@@ -1,5 +1,7 @@
 # TypeFast — Real-Time Multiplayer Typing Platform
 
+> A production-grade, full-stack mental wellness application featuring AI-driven mood analysis, OAuth authentication, real-time community chat, gamified self-care, and comprehensive E2E testing — deployed live on Vercel + Render.
+
 <p align="center">
   <a href="https://mindsphere-hub.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
   <a href="https://mindsphere-backend-9c0u.onrender.com/health"><img src="https://img.shields.io/badge/API-4351e8?style=for-the-badge&logo=render&logoColor=white" /></a>
