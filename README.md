@@ -1,6 +1,6 @@
-# TypeFast — Real-Time Multiplayer Typing Platform
+## TypeFast — Real-Time Multiplayer Typing Platform
 
-> A production-grade, full-stack mental wellness application featuring AI-driven mood analysis, OAuth authentication, real-time community chat, gamified self-care, and comprehensive E2E testing — deployed live on Vercel + Render.
+> TypeFast is a real-time multiplayer typing speed test platform where users practice typing, race against friends, track performance metrics, and compete on global leaderboards. Built with Next.js, React, WebSocket, PostgreSQL, and deployed on Render with 25 E2E tests and 100% Typing Save test coverage.
 
 <p align="center">
   <a href="https://mindsphere-hub.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
