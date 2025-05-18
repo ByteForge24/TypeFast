@@ -13,6 +13,28 @@
 </p>
 
 ---
+## System Architecture
+
+### High-Level Architecture Diagram
+
+```mermaid
+graph TB
+    WEB["🌐 React + Next.js<br/>Web Client"]
+    NEXT["Next.js App<br/>API Routes"]
+    WS["WebSocket Server<br/>Port 8080"]
+    PG["🗄️ PostgreSQL 16"]
+    REDIS["⚡ Redis Cache"]
+    GOOGLE["Google OAuth"]
+
+    WEB -->|HTTP/HTTPS| NEXT
+    WEB -->|WebSocket| WS
+    NEXT -->|Query| PG
+    NEXT -->|Cache| REDIS
+    NEXT -->|Verify| GOOGLE
+    WS -->|Persist| PG
+    WS -->|Cache| REDIS
+```
+---
 
 ## 📋 Table of Contents
 1. [Executive Summary](#executive-summary)
@@ -44,30 +66,6 @@
 - **Render Production Deployment** with PostgreSQL + Redis
 - **Full Authentication Stack** (OAuth + Credentials)
 - **Comprehensive Testing** (E2E + Unit + Integration)
-
----
-
-## System Architecture
-
-### High-Level Architecture Diagram
-
-```mermaid
-graph TB
-    WEB["🌐 React + Next.js<br/>Web Client"]
-    NEXT["Next.js App<br/>API Routes"]
-    WS["WebSocket Server<br/>Port 8080"]
-    PG["🗄️ PostgreSQL 16"]
-    REDIS["⚡ Redis Cache"]
-    GOOGLE["Google OAuth"]
-
-    WEB -->|HTTP/HTTPS| NEXT
-    WEB -->|WebSocket| WS
-    NEXT -->|Query| PG
-    NEXT -->|Cache| REDIS
-    NEXT -->|Verify| GOOGLE
-    WS -->|Persist| PG
-    WS -->|Cache| REDIS
-```
 
 ---
 
