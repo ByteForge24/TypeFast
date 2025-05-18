@@ -14,20 +14,6 @@
 
 ---
 
-A **production-grade, real-time multiplayer typing speed test platform** built with modern web technologies. Users practice typing, compete in live races, track detailed statistics, and climb global leaderboards. Features **25 E2E tests**, OAuth authentication, WebSocket infrastructure, and Render deployment.
-
-[![Production](https://img.shields.io/badge/Status-Production%20Ready-green?style=flat-square&logo=checkmark)](https://typefast-web-yogd.onrender.com)
-[![Tests](https://img.shields.io/badge/Tests-9%2F25%20Passing-orange?style=flat-square&logo=playwright)](./QUICK_START_STRICT_TESTS.md)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](http://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)](https://react.dev)
-[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js)](https://nextjs.org)
-
-**[LIVE DEMO](https://typefast-web-yogd.onrender.com)** • **[TEST REPORT](./QUICK_START_STRICT_TESTS.md)** • **[API DOCS](#api-architecture)** • **[DEPLOY GUIDE](./docs/DEPLOYMENT_SETUP.md)**
-
-**Tech**: React • Next.js • TypeScript • Tailwind • PostgreSQL • Redis • WebSocket • Playwright
-
----
-
 ## 📋 Table of Contents
 1. [Executive Summary](#executive-summary)
 2. [System Architecture](#system-architecture)
