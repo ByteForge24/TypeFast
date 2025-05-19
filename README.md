@@ -55,7 +55,7 @@ graph TB
 
 ---
 
-## Executive Summary
+## Overview
 
 **TypeFast** is an enterprise-grade, real-time multiplayer typing speed test platform built with modern web technologies. It enables users to practice typing, compete in live multiplayer races, track detailed statistics, and engage in global competitions through a responsive web interface and reliable WebSocket infrastructure.
 
