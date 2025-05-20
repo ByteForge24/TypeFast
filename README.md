@@ -3,13 +3,14 @@
 > TypeFast is a real-time multiplayer typing speed test platform where users practice typing, race against friends, track performance metrics, and compete on global leaderboards. Built with Next.js, React, WebSocket, PostgreSQL, and deployed on Render with 25 E2E tests and 100% Typing Save test coverage.
 
 <p align="center">
-  <a href="https://mindsphere-hub.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
-  <a href="https://mindsphere-backend-9c0u.onrender.com/health"><img src="https://img.shields.io/badge/API-4351e8?style=for-the-badge&logo=render&logoColor=white" /></a>
-  <a href="https://github.com/ByteForge24/MindSphere/actions"><img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" /></a>
+  <a href="https://typefast-web-yogd.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-FF6B6B?style=for-the-badge&logo=render&logoColor=white" /></a>
+  <a href="https://typefast-web-yogd.onrender.com/health"><img src="https://img.shields.io/badge/API-4ECDC4?style=for-the-badge&logo=web&logoColor=white" /></a>
+  <a href="https://github.com/ByteForge24/TypeFast/actions"><img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" /></a>
+  <a href="./QUICK_START_STRICT_TESTS.md"><img src="https://img.shields.io/badge/E2E%20Tests-9%2F25-orange?style=for-the-badge&logo=playwright&logoColor=white" /></a>
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,ts,tailwind css,nodejs,express,mongodb,docker&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=react,ts,tailwind,nodejs,express,mongodb,docker&theme=dark" />
 </p>
 
 ---
