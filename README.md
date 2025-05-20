@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,ts,vite,tailwind,nodejs,express,mongodb,docker&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=react,ts,tailwind css,nodejs,express,mongodb,docker&theme=dark" />
 </p>
 
 ---
