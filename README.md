@@ -26,13 +26,13 @@ graph TB
     REDIS["⚡ Redis Cache"]
     GOOGLE["Google OAuth"]
 
-    WEB -->|HTTP/HTTPS| NEXT
-    WEB -->|WebSocket| WS
-    NEXT -->|Query| PG
-    NEXT -->|Cache| REDIS
-    NEXT -->|Verify| GOOGLE
-    WS -->|Persist| PG
-    WS -->|Cache| REDIS
+    WEB --> NEXT
+    WEB --> WS
+    NEXT --> PG
+    NEXT --> REDIS
+    NEXT --> GOOGLE
+    WS --> PG
+    WS --> REDIS
 ```
 ---
 
