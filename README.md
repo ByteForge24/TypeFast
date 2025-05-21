@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://typefast-web-yogd.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-FF6B6B?style=for-the-badge&logo=render&logoColor=white" /></a>
   <a href="https://typefast-web-yogd.onrender.com/health"><img src="https://img.shields.io/badge/API-4ECDC4?style=for-the-badge&logo=web&logoColor=white" /></a>
-  <a href="./QUICK_START_STRICT_TESTS.md"><img src="https://img.shields.io/badge/E2E%20Tests-9%2F25-orange?style=for-the-badge&logo=playwright&logoColor=white" /></a>
+  </a>
 </p>
 
 <p align="center">
