@@ -13,7 +13,7 @@
 </p>
 
 ---
-## System Architecture
+## 🏗️ System Architecture
 
 ### High-Level Architecture Diagram
 
@@ -55,7 +55,7 @@ graph TB
 
 ---
 
-## Overview
+## 📊 Overview
 
 **TypeFast** is an enterprise-grade, real-time multiplayer typing speed test platform built with modern web technologies. It enables users to practice typing, compete in live multiplayer races, track detailed statistics, and engage in global competitions through a responsive web interface and reliable WebSocket infrastructure.
 
@@ -69,7 +69,7 @@ graph TB
 
 ---
 
-## Technology Stack
+## 📱 Technology Stack
 
 ### Frontend
 | Tech | Purpose |
@@ -106,7 +106,7 @@ graph TB
 
 ---
 
-## Core Features
+## 🎯 Core Features
 
 ### 1. Typing Speed Test Engine
 
@@ -221,7 +221,7 @@ Caching: 30-minute Redis TTL for performance
 
 ---
 
-## System Design
+## 🏗️ System Design
 
 ### Request-Response Cycle
 
@@ -270,7 +270,7 @@ Caching: 30-minute Redis TTL for performance
 
 ---
 
-## Database Architecture
+## 🗄️ Database Architecture
 
 ### Database Schema (ERD)
 
@@ -336,7 +336,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 
 ---
 
-## API Architecture
+## 🔌 API Architecture
 
 ### Main Endpoints
 
@@ -410,7 +410,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 
 ---
 
-## Real-Time Communication
+## 📡 Real-Time Communication
 
 ### WebSocket Overview
 
@@ -452,7 +452,7 @@ ROOM:CLOSED          - { reason: string }
 
 ---
 
-## Deployment Architecture
+## 🚀 Deployment Architecture
 
 ### Render Production Stack
 
@@ -511,7 +511,7 @@ services:
 
 ---
 
-## Authentication & Security
+## 🔒 Authentication & Security
 
 ### JWT Authentication Flow
 
@@ -578,7 +578,7 @@ sequenceDiagram
 
 ---
 
-## Testing Infrastructure
+## ✅ Testing Infrastructure
 
 ### Test Organization
 
@@ -631,7 +631,7 @@ Total: 9/25 (36%) Passing
 
 ---
 
-## Performance & Scalability
+## 📈 Performance & Scalability
 
 ### Optimization Strategies
 
@@ -671,7 +671,7 @@ Total: 9/25 (36%) Passing
 
 ---
 
-## Development Workflow
+## 🛠️ Development Workflow
 
 ### Local Setup
 
@@ -718,7 +718,7 @@ npm run dev
 
 ---
 
-## Monitoring & Observability
+## 💭 Monitoring & Observability
 
 ### Logging
 
@@ -761,7 +761,7 @@ logger.error('Database connection failed', {
 
 ---
 
-## Roadmap
+## 📋 Roadmap
 
 ### Phase 1: Current (✅ Production Ready)
 - Typing speed test engine with multiple modes
@@ -790,7 +790,7 @@ logger.error('Database connection failed', {
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Quick Start
 
@@ -832,7 +832,7 @@ git push origin main
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 ### Code Review Checklist
 - [ ] All E2E tests pass
@@ -851,13 +851,13 @@ git push origin main
 
 ---
 
-## License
+## 📜 License
 
 MIT License - See LICENSE file
 
 ---
 
-## Support & Documentation
+## 📞 Support & Documentation
 
 - **API Docs**: [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - **Deployment**: [DEPLOYMENT_SETUP.md](docs/DEPLOYMENT_SETUP.md)
