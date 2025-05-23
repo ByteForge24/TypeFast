@@ -1,0 +1,73 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "TypeFast" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e4]
+      - paragraph [ref=e6]: TypeFast
+    - navigation [ref=e7]:
+      - link "Type" [ref=e8] [cursor=pointer]:
+        - /url: /type
+        - img [ref=e9]
+        - paragraph [ref=e11]: Type
+      - link "Multiplayer" [ref=e12] [cursor=pointer]:
+        - /url: /multiplayer
+        - img [ref=e13]
+        - paragraph [ref=e22]: Multiplayer
+      - link "Leaderboard" [ref=e23] [cursor=pointer]:
+        - /url: /leaderboard
+        - img [ref=e24]
+        - paragraph [ref=e26]: Leaderboard
+      - link "Profile" [ref=e27] [cursor=pointer]:
+        - /url: /profile
+        - img [ref=e28]
+        - paragraph [ref=e31]: Profile
+  - main [ref=e32]:
+    - generic [ref=e34]:
+      - heading "Multiplayer Arena" [level=1] [ref=e36]
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e42]: Create Room
+          - generic [ref=e44]:
+            - textbox "Room Name" [ref=e46]
+            - generic [ref=e47]:
+              - generic [ref=e48]:
+                - combobox [ref=e49] [cursor=pointer]:
+                  - generic: Words
+                  - img [ref=e50]
+                - combobox [ref=e52]
+              - generic [ref=e53]:
+                - combobox [ref=e54] [cursor=pointer]:
+                  - generic: Mode Option
+                  - img [ref=e55]
+                - combobox [ref=e57]
+            - button "Create Room" [ref=e58] [cursor=pointer]:
+              - img
+              - text: Create Room
+        - generic [ref=e59]:
+          - generic [ref=e61]:
+            - img [ref=e62]
+            - generic [ref=e65]: Join Room
+          - generic [ref=e67]:
+            - textbox "Room Code" [ref=e69]: INVALID123
+            - button "Joining..." [disabled]:
+              - img
+              - generic: Joining...
+      - generic [ref=e71]:
+        - generic [ref=e73]:
+          - img [ref=e74]
+          - generic [ref=e77]: Public Room
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - heading "Pilot@taimur" [level=3] [ref=e86]
+            - paragraph [ref=e87]:
+              - img [ref=e88]
+              - text: 25 words
+          - button "Join" [ref=e90] [cursor=pointer]
+  - region "Notifications alt+T"
+  - alert [ref=e91]
+```
