@@ -38,12 +38,12 @@
             - text: Name
             - generic [ref=e47]:
               - img [ref=e48]
-              - textbox "John Doe" [ref=e51]: E2E User 1774176888066-fmrf23-signup-5-4 2
+              - textbox "John Doe" [ref=e51]: E2E User 1774185328924-i5zp7k-signup-5-4 2
           - generic [ref=e53]:
             - text: Email
             - generic [ref=e54]:
               - img [ref=e55]
-              - textbox "john@gmail.com" [ref=e58]: e2e-1774176888066-fmrf23-signup-5-4@test.typefast
+              - textbox "john@gmail.com" [ref=e58]: e2e-1774185328924-i5zp7k-signup-5-4@test.typefast
           - generic [ref=e60]:
             - text: Password
             - generic [ref=e61]:

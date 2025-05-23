@@ -24,7 +24,7 @@
         - /url: /profile
         - img [ref=e28]
         - paragraph [ref=e31]: Profile
-      - button [ref=e32] [cursor=pointer]:
+      - button "logout" [ref=e32] [cursor=pointer]:
         - img
   - main [ref=e33]:
     - generic [ref=e34]:
@@ -39,7 +39,7 @@
         - button "25" [ref=e46] [cursor=pointer]
         - button "50" [ref=e47] [cursor=pointer]
       - generic [ref=e48]:
-        - text: shinning flew last corn vertical farm noted instead shade blow
+        - text: tent government age energy cell gold husband office drove land
         - textbox [active] [ref=e50]
   - region "Notifications alt+T"
   - alert [ref=e51]

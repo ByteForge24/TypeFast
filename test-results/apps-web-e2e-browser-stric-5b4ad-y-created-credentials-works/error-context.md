@@ -38,7 +38,7 @@
             - text: Email
             - generic [ref=e47]:
               - img [ref=e48]
-              - textbox "john@gmail.com" [ref=e51]: e2e-1774176905471-v6auus-auth-lifecycle-5-5@test.typefast
+              - textbox "john@gmail.com" [ref=e51]: e2e-1774185355812-ix3u0p-auth-lifecycle-5-5@test.typefast
           - generic [ref=e53]:
             - text: Password
             - generic [ref=e54]:

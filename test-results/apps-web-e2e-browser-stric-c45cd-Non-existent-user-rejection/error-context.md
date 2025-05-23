@@ -30,33 +30,24 @@
       - generic [ref=e37]: Sign in to your account or create a new one
     - generic [ref=e39]:
       - tablist [ref=e40]:
-        - tab "Sign In" [ref=e41] [cursor=pointer]
-        - tab "Sign Up" [selected] [ref=e42] [cursor=pointer]
-      - tabpanel "Sign Up" [ref=e43]:
+        - tab "Sign In" [selected] [ref=e41] [cursor=pointer]
+        - tab "Sign Up" [ref=e42] [cursor=pointer]
+      - tabpanel "Sign In" [ref=e43]:
         - generic [ref=e44]:
           - generic [ref=e46]:
-            - text: Name
+            - text: Email
             - generic [ref=e47]:
               - img [ref=e48]
-              - textbox "John Doe" [ref=e51]: E2E User 1774176872530-0db5z9-signup-5-3
+              - textbox "john@gmail.com" [ref=e51]: e2e-1774185398438-37crg2-non-existent@test.typefast
           - generic [ref=e53]:
-            - text: Email
+            - text: Password
             - generic [ref=e54]:
               - img [ref=e55]
-              - textbox "john@gmail.com" [ref=e58]: e2e-1774176872530-0db5z9-signup-5-3@test.typefast
-          - generic [ref=e60]:
-            - text: Password
-            - generic [ref=e61]:
-              - img [ref=e62]
-              - textbox "●●●●●●●●" [ref=e65]: TestPassword123!
+              - textbox "●●●●●●●●" [ref=e58]: TestPassword123!
           - button [disabled]
-    - button "Continue with Google" [ref=e67] [cursor=pointer]:
+    - button "Continue with Google" [ref=e60] [cursor=pointer]:
       - img
-      - generic [ref=e68]: Continue with Google
-  - region "Notifications alt+T":
-    - list:
-      - listitem [ref=e69]:
-        - img [ref=e71]
-        - generic [ref=e74]: Account created successfully! You can sign in now.
-  - alert [ref=e75]
+      - generic [ref=e61]: Continue with Google
+  - region "Notifications alt+T"
+  - alert [ref=e62]
 ```
