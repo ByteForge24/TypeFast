@@ -13,7 +13,7 @@
 </p>
 
 ---
-## 🏗️ System Architecture
+##  System Architecture
 
 ### High-Level Architecture Diagram
 
