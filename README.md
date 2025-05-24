@@ -1,6 +1,6 @@
 ## 🎮 TypeFast — Real-Time Multiplayer Typing Platform
 
-> TypeFast is a real-time multiplayer typing speed test platform where users practice typing, race against friends, track performance metrics, and compete on global leaderboards. Built with Next.js, React, WebSocket, PostgreSQL, and deployed on Render with 25 E2E tests and 100% Typing Save test coverage.
+> TypeFast is a high-performance real-time multiplayer typing platform with live races, leaderboards, and seamless sync. Built using Next.js, WebSockets, PostgreSQL, and Redis, optimized for low latency and scalability.
 
 <p align="center">
   <a href="https://typefast-web-yogd.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-FF6B6B?style=for-the-badge&logo=render&logoColor=white" /></a>
