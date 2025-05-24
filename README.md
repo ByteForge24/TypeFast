@@ -129,7 +129,7 @@ graph TB
 
 ---
 
-### 2. Multiplayer Racing System
+### 2. 👥 Multiplayer Racing System
 
 **Purpose**: Enable real-time competitive typing races between users
 
@@ -151,7 +151,7 @@ graph TB
 
 ---
 
-### 3. User Profiles & Statistics
+### 3. 👥 User Profiles & Statistics
 
 **Purpose**: Track user performance metrics and personal records
 
