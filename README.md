@@ -106,6 +106,48 @@ graph TB
 
 ---
 
+## 🧭 Getting Started
+
+### Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/yourusername/typefast.git
+cd typefast
+
+# Install and run
+npm install
+npm run dev
+
+# Visit http://localhost:3000
+```
+
+### Docker Quick Start
+
+```bash
+docker-compose up -d
+# Services ready in ~30 seconds
+# Web: http://localhost:3000
+# WebSocket: ws://localhost:8080
+```
+
+### Production Deployment
+
+```bash
+# Push to main branch
+git push origin main
+
+# Render automatically:
+# 1. Builds Docker image
+# 2. Runs migrations
+# 3. Deploys services
+# 4. Updates DNS
+
+# Monitor at https://dashboard.render.com
+```
+
+---
+
 ## 🎯 Core Features
 
 ### 1. Typing Speed Test Engine
@@ -790,48 +832,6 @@ logger.error('Database connection failed', {
 
 ---
 
-## 🚀 Getting Started
-
-### Quick Start
-
-```bash
-# Clone and setup
-git clone https://github.com/yourusername/typefast.git
-cd typefast
-
-# Install and run
-npm install
-npm run dev
-
-# Visit http://localhost:3000
-```
-
-### Docker Quick Start
-
-```bash
-docker-compose up -d
-# Services ready in ~30 seconds
-# Web: http://localhost:3000
-# WebSocket: ws://localhost:8080
-```
-
-### Production Deployment
-
-```bash
-# Push to main branch
-git push origin main
-
-# Render automatically:
-# 1. Builds Docker image
-# 2. Runs migrations
-# 3. Deploys services
-# 4. Updates DNS
-
-# Monitor at https://dashboard.render.com
-```
-
----
-
 ## 🤝 Contributing
 
 ### Code Review Checklist
@@ -865,8 +865,3 @@ MIT License - See LICENSE file
 - **Issues**: GitHub Issues
 - **Discussions**: GitHub Discussions
 
----
-
-**Last Updated**: March 24, 2026  
-**Maintainer**: TypeFast Development Team  
-**Status**: 🟢 Production Ready (v1.0.0)
