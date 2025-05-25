@@ -1,4 +1,4 @@
-## 🎮 TypeFast — Real-Time Multiplayer Typing Platform
+<img width="103" height="76" alt="image" src="https://github.com/user-attachments/assets/ad12f09e-1455-47e5-a36f-4a69b2a1f929" />## 🎮 TypeFast — Real-Time Multiplayer Typing Platform
 
 > TypeFast is a high-performance real-time multiplayer typing platform with live races, leaderboards, and seamless sync. Built using Next.js, WebSockets, PostgreSQL, and Redis, optimized for low latency and scalability.
 
@@ -171,7 +171,7 @@ graph TB
 
 ---
 
-### 4. Global Leaderboards
+### 4. 🌍 Global Leaderboards
 
 **Purpose**: Rank users by performance metrics for competition
 
@@ -196,7 +196,7 @@ Caching: 30-minute Redis TTL for performance
 
 ---
 
-### 5. Authentication & Authorization
+### 5. 🔐 Authentication & Authorization
 
 **Purpose**: Secure user accounts with multiple authentication methods
 
@@ -221,7 +221,7 @@ Caching: 30-minute Redis TTL for performance
 
 ---
 
-## 🏗️ System Design
+## 🧩 System Design
 
 ### Request-Response Cycle
 
@@ -422,7 +422,7 @@ TypeFast uses WebSocket (port 8080) for real-time features:
 
 **Performance**: <50ms message latency for sub-100 concurrent users per room.
 
-### WebSocket Events
+### 🔗 WebSocket Events
 
 ```typescript
 // Client → Server
@@ -440,7 +440,7 @@ RACE:FINISHED        - { rankings, times }
 ROOM:CLOSED          - { reason: string }
 ```
 
-### Room State Management
+### 🔄 Room State Management
 
 **States**: EMPTY → WAITING → IN_PROGRESS → FINISHING → FINISHED → CLOSED
 
@@ -468,7 +468,7 @@ ROOM:CLOSED          - { reason: string }
 - Both services connect to shared PostgreSQL and Redis
 - Environment variables stored securely in Render config
 
-### Docker Compose (Local Development)
+### 🐳Docker Compose (Local Development)
 
 ```yaml
 services:
