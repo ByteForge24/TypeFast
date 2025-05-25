@@ -1,4 +1,4 @@
-<img width="103" height="76" alt="image" src="https://github.com/user-attachments/assets/ad12f09e-1455-47e5-a36f-4a69b2a1f929" />## 🎮 TypeFast — Real-Time Multiplayer Typing Platform
+## 🎮 TypeFast — Real-Time Multiplayer Typing Platform
 
 > TypeFast is a high-performance real-time multiplayer typing platform with live races, leaderboards, and seamless sync. Built using Next.js, WebSockets, PostgreSQL, and Redis, optimized for low latency and scalability.
 
