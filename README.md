@@ -106,6 +106,54 @@ graph TB
 
 ---
 
+## 📸 Screenshots & UI Preview
+
+### 1️⃣ Landing Page - Hero Section
+**Master Your Typing Skills with TypeFast**
+- Clean, minimalist dark theme with neon green accent
+- Hero headline with prominent CTA button
+- Navigation bar with all main features
+- Professional, modern design focus
+
+### 2️⃣ Features Showcase
+**Why Choose TypeFast?**
+Highlights 5 key features:
+- ⚡ Real-time Feedback - Instant WPM & accuracy updates
+- ⚔️ Challenge Friends - Competitive multiplayer racing
+- 📊 Detailed Statistics - Comprehensive performance tracking
+- ⚙️ Customizable Options - Multiple typing modes
+- ✨ Minimalist Interface - Clean, distraction-free design
+
+### 3️⃣ User Profile & Statistics
+**Personal Dashboard**
+- User avatar and profile name
+- Key metrics display:
+  - Average WPM (Words Per Minute)
+  - Accuracy percentage
+  - Tests completed count
+  - Total typing time
+- All-time best scores by mode
+- Performance tracking over time
+
+### 4️⃣ Multiplayer Arena - Room Lobby
+**Real-time Typing Races**
+- Create Room section (customizable settings)
+- Join Room with room code
+- Public rooms list showing:
+  - Room creator name
+  - Test mode and duration
+  - Current participants
+  - Quick join button
+
+### 5️⃣ Multiplayer Room - Active Race
+**Live Racing Interface**
+- Room details (name, mode, participants)
+- Real-time chat panel for communication during races
+- Typists list showing active participants
+- Clean split layout for focus and interaction
+
+---
+
 ## 🧭 Getting Started
 
 ### Quick Start
