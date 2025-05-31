@@ -183,7 +183,7 @@ npm run dev
 ### Docker Quick Start
 
 ```bash
-docker-compose up -d
+docker-compose -f docker/docker-compose.yml up -d
 # Services ready in ~30 seconds
 # Web: http://localhost:3000
 # WebSocket: ws://localhost:8080
@@ -787,7 +787,7 @@ npm install
 cp .env.example .env.local
 
 # Start services (Docker)
-docker-compose up -d
+docker-compose -f docker/docker-compose.yml up -d
 
 # Run migrations
 npx prisma migrate dev

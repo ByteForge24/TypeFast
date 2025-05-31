@@ -652,7 +652,7 @@ Environment Variables:
 - Environment variable: `REDIS_URL`
 
 ### Docker Deployment (Local)
-**Files**: `docker/Dockerfile.web`, `docker/Dockerfile.ws`, `docker-compose.yml`
+**Files**: `docker/Dockerfile.web`, `docker/Dockerfile.ws`, `docker/docker-compose.yml`
 
 **Multi-stage Builds for Optimization**:
 ```dockerfile
