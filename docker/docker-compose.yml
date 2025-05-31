@@ -3,8 +3,8 @@ version: '3.8'
 services:
   web:
     build:
-      context: .
-      dockerfile: docker/Dockerfile.web
+      context: ..
+      dockerfile: Dockerfile.web
     container_name: typefast-web
     ports:
       - "3000:3000"
@@ -23,8 +23,8 @@ services:
 
   ws:
     build:
-      context: .
-      dockerfile: docker/Dockerfile.ws
+      context: ..
+      dockerfile: Dockerfile.ws
     container_name: typefast-ws
     ports:
       - "8080:8080"
@@ -59,3 +59,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+
