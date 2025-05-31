@@ -109,48 +109,58 @@ graph TB
 ## 📸 Screenshots & UI Preview
 
 ### 1️⃣ Landing Page - Hero Section
+![TypeFast Landing Page](./docs/screenshots/01-homepage.png)
 **Master Your Typing Skills with TypeFast**
 - Clean, minimalist dark theme with neon green accent
-- Hero headline with prominent CTA button
+- Hero headline with prominent CTA button "Start Typing Now"
 - Navigation bar with all main features
 - Professional, modern design focus
 
 ### 2️⃣ Features Showcase
+![TypeFast Features](./docs/screenshots/02-features.png)
 **Why Choose TypeFast?**
 Highlights 5 key features:
-- ⚡ Real-time Feedback - Instant WPM & accuracy updates
-- ⚔️ Challenge Friends - Competitive multiplayer racing
-- 📊 Detailed Statistics - Comprehensive performance tracking
-- ⚙️ Customizable Options - Multiple typing modes
-- ✨ Minimalist Interface - Clean, distraction-free design
+- ⚡ **Real-time Feedback** - Instant WPM & accuracy updates
+- ⚔️ **Challenge Friends** - Competitive multiplayer racing
+- 📊 **Detailed Statistics** - Comprehensive performance tracking
+- ⚙️ **Customizable Options** - Multiple typing modes and settings
+- ✨ **Minimalist Interface** - Clean, distraction-free design
 
 ### 3️⃣ User Profile & Statistics
+![TypeFast Profile Dashboard](./docs/screenshots/03-profile.png)
 **Personal Dashboard**
 - User avatar and profile name
 - Key metrics display:
-  - Average WPM (Words Per Minute)
-  - Accuracy percentage
-  - Tests completed count
-  - Total typing time
-- All-time best scores by mode
-- Performance tracking over time
+  - **Average WPM** (Words Per Minute) - 111
+  - **Accuracy** - 14%
+  - **Tests Completed** - 1
+  - **Total Typing Time** - Real-time tracking
+- All-time best scores by mode (15s, 30s, 60s, etc.)
+- Performance tracking over time with visual charts
 
 ### 4️⃣ Multiplayer Arena - Room Lobby
+![TypeFast Multiplayer Lobby](./docs/screenshots/04-multiplayer-lobby.png)
 **Real-time Typing Races**
-- Create Room section (customizable settings)
-- Join Room with room code
-- Public rooms list showing:
+- **Create Room** section (customizable settings)
+  - Room name input
+  - Test mode selection (Words, Time, Quote)
+  - Duration/mode options
+- **Join Room** with room code
+- **Public Rooms** list showing:
   - Room creator name
   - Test mode and duration
   - Current participants
-  - Quick join button
+  - Quick join buttons
 
 ### 5️⃣ Multiplayer Room - Active Race
+![TypeFast Live Race](./docs/screenshots/05-multiplayer-room.png)
 **Live Racing Interface**
-- Room details (name, mode, participants)
-- Real-time chat panel for communication during races
-- Typists list showing active participants
-- Clean split layout for focus and interaction
+- Room details header (name, mode, participants)
+- Unique room code for sharing
+- **Real-time Chat** panel for communication during races
+- **Typists/Participants** list showing active racers
+- Clean split layout optimized for focus and interaction
+- Live progress updates as users type
 
 ---
 
