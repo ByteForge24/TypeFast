@@ -5,7 +5,6 @@
 <p align="center">
   <a href="https://typefast-web-yogd.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-FF6B6B?style=for-the-badge&logo=render&logoColor=white" /></a>
   <a href="https://typefast-web-yogd.onrender.com/health"><img src="https://img.shields.io/badge/API-4ECDC4?style=for-the-badge&logo=web&logoColor=white" /></a>
-  </a>
 </p>
 
 <p align="center">
@@ -13,7 +12,8 @@
 </p>
 
 ---
-##  System Architecture
+
+## 🧭 System Architecture
 
 ### High-Level Architecture Diagram
 
@@ -34,9 +34,11 @@ graph TB
     WS --> PG
     WS --> REDIS
 ```
+
 ---
 
 ## 📋 Table of Contents
+
 1. [Executive Summary](#executive-summary)
 2. [System Architecture](#system-architecture)
 3. [Technology Stack](#technology-stack)
@@ -60,6 +62,7 @@ graph TB
 **TypeFast** is an enterprise-grade, real-time multiplayer typing speed test platform built with modern web technologies. It enables users to practice typing, compete in live multiplayer races, track detailed statistics, and engage in global competitions through a responsive web interface and reliable WebSocket infrastructure.
 
 ### Key Metrics
+
 - **25 E2E Tests** covering critical user flows
 - **100% Typing Save Suite Pass Rate** (5/5 tests)
 - **Real-Time Architecture** supporting concurrent multiplayer sessions
@@ -72,6 +75,7 @@ graph TB
 ## 📱 Technology Stack
 
 ### Frontend
+
 | Tech | Purpose |
 |------|---------|
 | React 19 | UI component library |
@@ -84,6 +88,7 @@ graph TB
 | Playwright 1.58.2 | E2E testing |
 
 ### Backend
+
 | Tech | Purpose |
 |------|---------|
 | Next.js 16.2 | Web server and API routes |
@@ -96,6 +101,7 @@ graph TB
 | TypeScript | Type safety |
 
 ### Infrastructure
+
 | Tech | Purpose |
 |------|---------|
 | Render | PaaS hosting |
@@ -109,17 +115,21 @@ graph TB
 ## 📸 Screenshots & UI Preview
 
 ### 1️⃣ Landing Page - Hero Section
+
 ![TypeFast Landing Page](./docs/screenshots/01-homepage.png)
 **Master Your Typing Skills with TypeFast**
+
 - Clean, minimalist dark theme with neon green accent
 - Hero headline with prominent CTA button "Start Typing Now"
 - Navigation bar with all main features
 - Professional, modern design focus
 
 ### 2️⃣ Features Showcase
+
 ![TypeFast Features](./docs/screenshots/02-features.png)
 **Why Choose TypeFast?**
 Highlights 5 key features:
+
 - ⚡ **Real-time Feedback** - Instant WPM & accuracy updates
 - ⚔️ **Challenge Friends** - Competitive multiplayer racing
 - 📊 **Detailed Statistics** - Comprehensive performance tracking
@@ -127,8 +137,10 @@ Highlights 5 key features:
 - ✨ **Minimalist Interface** - Clean, distraction-free design
 
 ### 3️⃣ User Profile & Statistics
+
 ![TypeFast Profile Dashboard](./docs/screenshots/03-profile.png)
 **Personal Dashboard**
+
 - User avatar and profile name
 - Key metrics display:
   - **Average WPM** (Words Per Minute) - 111
@@ -139,8 +151,10 @@ Highlights 5 key features:
 - Performance tracking over time with visual charts
 
 ### 4️⃣ Multiplayer Arena - Room Lobby
+
 ![TypeFast Multiplayer Lobby](./docs/screenshots/04-multiplayer-lobby.png)
 **Real-time Typing Races**
+
 - **Create Room** section (customizable settings)
   - Room name input
   - Test mode selection (Words, Time, Quote)
@@ -153,8 +167,10 @@ Highlights 5 key features:
   - Quick join buttons
 
 ### 5️⃣ Multiplayer Room - Active Race
+
 ![TypeFast Live Race](./docs/screenshots/05-multiplayer-room.png)
 **Live Racing Interface**
+
 - Room details header (name, mode, participants)
 - Unique room code for sharing
 - **Real-time Chat** panel for communication during races
@@ -215,12 +231,14 @@ git push origin main
 **Flow**: User starts test → selects mode (15s/30s/60s/quote) → loads content → types in real-time → system calculates WPM and accuracy → saves result to database → updates user profile and leaderboard.
 
 **Key Metrics Calculated**:
+
 - **WPM (Words Per Minute)** - (Total characters / 5) / minutes
 - **Accuracy** - (Correct characters / Total characters) × 100%
 - **Errors** - Count of incorrect keystrokes
 - **Duration** - Test completion time in seconds
 
 **Components**:
+
 - `TypingTest` - Main container component
 - `TypeArea` - Text input capture with real-time validation
 - `DisplayText` - Character-by-character rendering with highlights
@@ -236,6 +254,7 @@ git push origin main
 **Flow**: Users join a room → see member list → wait for all to be ready → race starts → real-time progress updates broadcast to all → user finishes → system calculates rankings and saves results.
 
 **Key Features**:
+
 - **Room Creation & Joining** - Create room with code, share code with others
 - **Member List** - Show all users in room with ready status
 - **Live Progress** - Real-time WPM and accuracy for all racers
@@ -243,6 +262,7 @@ git push origin main
 - **WebSocket Communication** - Sub-100ms message delivery for real-time feel
 
 **Components**:
+
 - `RoomList` - Available rooms display
 - `CreateRoom` - Form to create new multiplayer room
 - `JoinRoom` - Room code input and joining logic
@@ -256,6 +276,7 @@ git push origin main
 **Purpose**: Track user performance metrics and personal records
 
 **Features**:
+
 - **Aggregate Statistics** - Weighted WPM average, best score, accuracy percentile
 - **Test History** - Chronological list of all tests with filter/search
 - **Performance Trends** - Charts showing WPM improvement over time
@@ -263,6 +284,7 @@ git push origin main
 - **Streak Tracking** - Current daily/weekly streak and consistency metrics
 
 **Components**:
+
 - `ProfileHeader` - User info, avatar, username
 - `StatsCards` - WPM, accuracy, test count displays
 - `PerformanceChart` - Historical performance visualization
@@ -276,12 +298,14 @@ git push origin main
 **Purpose**: Rank users by performance metrics for competition
 
 **Leaderboard Types**:
+
 1. **Global** - All-time rankings by average WPM
 2. **Weekly** - Last 7 days performance
 3. **Monthly** - Last 30 days performance
 4. **By Mode** - Separate rankings per test mode (15s, 30s, 60s, quotes)
 
 **Ranking Algorithm**:
+
 ```
 Score = (WPM × Accuracy) / sqrt(Number of Tests)
 Percentile = (Rank / Total Users) × 100
@@ -289,6 +313,7 @@ Caching: 30-minute Redis TTL for performance
 ```
 
 **Features**:
+
 - Top 100 rankings with badges for top 3
 - User positioning with rank delta (↑/↓)
 - Personal rank and percentile display
@@ -301,6 +326,7 @@ Caching: 30-minute Redis TTL for performance
 **Purpose**: Secure user accounts with multiple authentication methods
 
 **Authentication Support**:
+
 1. **Email/Password (Credentials)**
    - Signup: Form validation → bcryptjs hashing (10+ rounds) → store in DB
    - Signin: Find user by email → verify password hash → create JWT session
@@ -312,6 +338,7 @@ Caching: 30-minute Redis TTL for performance
    - Support account linking via `allowDangerousEmailAccountLinking`
 
 **Security Features**:
+
 - HTTP-only cookies (not accessible from JavaScript)
 - HTTPS enforced (secure flag on cookies)
 - SameSite=Strict cookie policy (CSRF protection)
@@ -326,6 +353,7 @@ Caching: 30-minute Redis TTL for performance
 ### Request-Response Cycle
 
 **API Request Flow**:
+
 1. Client sends HTTP request with headers/body
 2. Next.js middleware validates session (JWT verification)
 3. Input validation via Zod schemas
@@ -335,6 +363,7 @@ Caching: 30-minute Redis TTL for performance
 7. Return JSON response with 200/201 status
 
 **Caching Strategy**:
+
 - User sessions stored in Redis (30-day TTL)
 - Leaderboard cached for 1 hour (30-min before expiry)
 - API responses cached based on endpoint (userprofile: 5min, leaderboards: 1hr)
@@ -343,6 +372,7 @@ Caching: 30-minute Redis TTL for performance
 ### Error Handling
 
 **Error Response Format**:
+
 ```json
 {
   "success": false,
@@ -359,6 +389,7 @@ Caching: 30-minute Redis TTL for performance
 ```
 
 **HTTP Status Codes**:
+
 - `200` - Success
 - `201` - Created (new resource)
 - `400` - Bad request (validation failed)
@@ -420,6 +451,7 @@ erDiagram
 ### Database Indexing
 
 Key indexes for performance:
+
 ```sql
 CREATE INDEX idx_user_email ON "User"(email);           -- Fast email lookups
 CREATE INDEX idx_test_user_wpm ON "Test"(user_id, wpm); -- Leaderboard queries
@@ -474,6 +506,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 ### Response Format
 
 **Success**:
+
 ```json
 {
   "success": true,
@@ -483,6 +516,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 ```
 
 **Error**:
+
 ```json
 {
   "success": false,
@@ -495,6 +529,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 ```
 
 **Paginated**:
+
 ```json
 {
   "success": true,
@@ -515,6 +550,7 @@ CREATE INDEX idx_room_code ON "Room"(code);              -- Room lookups
 ### WebSocket Overview
 
 TypeFast uses WebSocket (port 8080) for real-time features:
+
 - **Room Management** - Join/leave/broadcast member updates
 - **Race Progress** - Live WPM, accuracy, position updates
 - **Chat** - Real-time messaging during races
@@ -545,6 +581,7 @@ ROOM:CLOSED          - { reason: string }
 **States**: EMPTY → WAITING → IN_PROGRESS → FINISHING → FINISHED → CLOSED
 
 **Key Features**:
+
 - Automatic cleanup after 5 minutes of inactivity
 - In-memory state with no persistence (recreate on server restart)
 - Broadcast updates to all room members
@@ -557,18 +594,20 @@ ROOM:CLOSED          - { reason: string }
 ### Render Production Stack
 
 **Services**:
+
 - **Web App** (Next.js) - 2 instances for load balancing
 - **WebSocket Server** - 1 instance for real-time features
 - **PostgreSQL 16** - Managed database with daily backups
 - **Redis** - Cache and session store (256MB memory)
 
 **Communication**:
+
 - Domain routes to web instances via load balancer
 - WebSocket server on separate port 8080
 - Both services connect to shared PostgreSQL and Redis
 - Environment variables stored securely in Render config
 
-### 🐳Docker Compose (Local Development)
+### 🐳 Docker Compose (Local Development)
 
 ```yaml
 services:
@@ -628,7 +667,7 @@ sequenceDiagram
     DB-->>Server: User record
     Server->>Server: Create JWT token
     Server-->>Client: JWT + HTTP-only cookie
-    
+
     Client->>Server: GET /api/user
     Client->>Server: (Cookie sent automatically)
     Server->>Server: Verify JWT signature
@@ -638,26 +677,31 @@ sequenceDiagram
 ### Security Layers
 
 **Transport Security**:
+
 - HTTPS/TLS 1.3 encryption for all traffic
 - Secure flag on HTTP-only cookies (can't be accessed via JavaScript)
 
 **Authentication**:
+
 - JWT token verification with HS256 signature
 - Token expiry validation (7-day expiration)
 - Session store in Redis with automatic cleanup
 
 **Authorization**:
+
 - Role-based access control (USER, ADMIN roles)
 - Middleware checks permissions on protected routes
 - API endpoints verify ownership (users can only modify own data)
 
 **Input/Data Protection**:
+
 - Zod schema validation on all inputs
 - bcryptjs password hashing (10+ rounds, ~100ms per hash)
 - Prepared statements via Prisma ORM (SQL injection protection)
 - CORS headers restrict cross-site requests
 
 **CSRF Protection**:
+
 - SameSite=Strict cookie policy
 - CSRF tokens on state-changing operations
 
@@ -683,17 +727,20 @@ sequenceDiagram
 ### Test Organization
 
 **Unit Tests** (Vitest):
+
 - Component tests using React Testing Library
 - Utility function tests
 - Rapid iteration for TDD
 
 **E2E Tests** (Playwright):
+
 - Full user journey testing
 - 25 tests across 4 suites
 - Headed mode with browser visualization
 - HTML reports with screenshots
 
 **Test Suites**:
+
 - Strict Auth Lifecycle (8 tests) - Signup, signin, logout flows
 - Strict Google OAuth (4 tests) - OAuth callback and session handling
 - Strict Multiplayer (8 tests) - Room creation, joining, racing
@@ -736,18 +783,21 @@ Total: 9/25 (36%) Passing
 ### Optimization Strategies
 
 **Frontend**:
+
 - Code splitting (dynamic imports per route)
 - WebP image format with lazy loading
 - Zustand for lightweight state management
 - Service Worker for offline caching
 
 **Backend**:
+
 - Database indexing on frequently queried columns
 - Redis caching (1-hour TTL for leaderboards)
 - gzip/Brotli response compression
 - Connection pooling (20 PostgreSQL connections)
 
 **Infrastructure**:
+
 - 2 web instances for load balancing
 - CDN for static assets
 - Render's geographic distribution
@@ -755,16 +805,19 @@ Total: 9/25 (36%) Passing
 ### Scalability Metrics
 
 **Database Capacity**:
+
 - PostgreSQL: ~10,000 QPS with indexing
 - Connection pool: 20 concurrent connections
 - Cache hit rate target: 80%
 
 **WebSocket Capacity**:
+
 - Per server: ~50,000 concurrent connections
 - Per room: ~100 users max
 - Message throughput: 100K+ msgs/sec
 
 **Current Load**:
+
 - ~10-100 QPS (development)
 - Scaling planned at 1K+ QPS
 - Action: Add web instances, increase DB size
@@ -844,17 +897,20 @@ logger.error('Database connection failed', {
 ### Key Metrics
 
 **Frontend (Web Vitals)**:
+
 - Largest Contentful Paint (LCP): <2.5s
 - First Input Delay (FID): <100ms
 - Cumulative Layout Shift (CLS): <0.1
 
 **Backend**:
+
 - API response time: p50=50ms, p95=150ms
 - Database query time: p50=30ms, p95=100ms
 - Cache hit rate: >80%
 - Error rate: <0.5%
 
 **Availability**:
+
 - Target: 99.9% uptime (43 min downtime/month)
 - Status: Status page at https://status.onrender.com
 - Health check: GET /health (every 30 seconds)
@@ -864,6 +920,7 @@ logger.error('Database connection failed', {
 ## 📋 Roadmap
 
 ### Phase 1: Current (✅ Production Ready)
+
 - Typing speed test engine with multiple modes
 - Multiplayer racing system
 - User authentication (email/password + Google OAuth)
@@ -871,18 +928,21 @@ logger.error('Database connection failed', {
 - 25 E2E tests with HTML reports
 
 ### Phase 2: Q2 2026 (In Progress)
+
 - Fix remaining E2E test failures (multiplayer DB migration)
 - Real-time chat during races
 - Friend system with private races
 - Advanced analytics dashboard
 
 ### Phase 3: Q3 2026 (Planned)
+
 - Mobile app (React Native)
 - Typing insights and progress tracking
 - Themed keyboard layouts
 - Tournament system with brackets
 
 ### Phase 4+: Long-term (2027+)
+
 - AI-powered difficulty adjustment
 - Professional esports integration
 - Multi-language support
@@ -893,6 +953,7 @@ logger.error('Database connection failed', {
 ## 🤝 Contributing
 
 ### Code Review Checklist
+
 - [ ] All E2E tests pass
 - [ ] No TypeScript errors
 - [ ] ESLint rules pass
@@ -902,6 +963,7 @@ logger.error('Database connection failed', {
 - [ ] Security review completed
 
 ### Issue Templates
+
 - Bug Report
 - Feature Request
 - Performance Improvement
@@ -922,6 +984,3 @@ MIT License - See LICENSE file
 - **Testing**: [QUICK_START_STRICT_TESTS.md](QUICK_START_STRICT_TESTS.md)
 - **Issues**: GitHub Issues
 - **Discussions**: GitHub Discussions
-
- 
- 
